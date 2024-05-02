@@ -8,6 +8,6 @@ pkgbase = fur
 	checkdepends = shellcheck
 	depends = git
 	source = fur-1.0.tar.gz::https://github.com/themartiancompany/fur/archive/refs/tags/1.0.tar.gz
-	sha256sums = 0b69f3e620beb0925eabff7739593285fbe1e4527d98467464154031cae66ab6
+	sha256sums = d960edaafbd8d0411771007612bb7f5413903b5d63df64a2345321b94ddb30fd
 
 pkgname = fur
