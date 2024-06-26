@@ -1,13 +1,14 @@
 pkgbase = fur
 	pkgdesc = ur helper
-	pkgver = 1.0
+	pkgver = 1.0.0.0.0.0.0
 	pkgrel = 1
 	url = https://github.com/themartiancompany/fur
 	arch = any
 	license = AGPL3
 	checkdepends = shellcheck
 	depends = git
-	source = fur-1.0.tar.gz::https://github.com/themartiancompany/fur/archive/refs/tags/1.0.tar.gz
-	sha256sums = d960edaafbd8d0411771007612bb7f5413903b5d63df64a2345321b94ddb30fd
+	source = fur-1.0.0.0.0.0.0.tar.gz::https://github.com/themartiancompany/fur/archive/refs/tags/1.0.0.0.0.0.0.tar.gz
+	validpgpkeys = 97E989E6CF1D2C7F7A41FF9F95684DBE23D6A3E9
+	sha256sums = 8e80d4356ab90500910de674e4cc57ec3d06e41aa3ad38d1cfca02ec334fe0b1
 
 pkgname = fur

@@ -6,7 +6,7 @@
 _offline="false"
 _git="false"
 pkgname=fur
-pkgver=1.0.0
+pkgver=1.0.0.0.0.0.0
 pkgrel=1
 _pkgdesc=(
   "ur helper"
@@ -32,6 +32,7 @@ optdepends=(
 [[ "${_os}" != "GNU/Linux" ]] && \
 [[ "${_os}" == "Android" ]] && \
   optdepends+=(
+    
   )
 makedepends=()
 checkdepends=(
@@ -47,7 +48,7 @@ _url="${url}"
     "git"
   ) && \
   source+=(
-    "${pkgname}-${pkgver}::git+${_url}#tag=${pkgver}"
+    "${pkgname}-${pkgver}::git+${_url}#tag=${pkgver}?signed"
   ) && \
   sha256sums+=(
     SKIP
@@ -57,8 +58,12 @@ _url="${url}"
     "${pkgname}-${pkgver}.tar.gz::${_url}/archive/refs/tags/${pkgver}.tar.gz"
   ) && \
   sha256sums+=(
-    '12b9298a5dce9f3a1ea0557e8fab191bdda6d37ac382691c0f8683d4f885fb17'
+    '8e80d4356ab90500910de674e4cc57ec3d06e41aa3ad38d1cfca02ec334fe0b1'
   )
+validpgpkeys=(
+  # Truocolo <truocolo@aol.com>
+  '97E989E6CF1D2C7F7A41FF9F95684DBE23D6A3E9'
+)
 
 check() {
   cd \
