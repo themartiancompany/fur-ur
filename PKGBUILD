@@ -32,7 +32,7 @@ optdepends=(
 [[ "${_os}" != "GNU/Linux" ]] && \
 [[ "${_os}" == "Android" ]] && \
   optdepends+=(
-    
+    'inteppacman: manage android native applications packages'
   )
 makedepends=()
 checkdepends=(
