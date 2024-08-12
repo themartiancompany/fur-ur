@@ -6,7 +6,7 @@
 _offline="false"
 _git="false"
 pkgname=fur
-pkgver=1.0.0.0.0.0.0
+pkgver=1.0.0.0.0.0.0.0
 pkgrel=1
 _pkgdesc=(
   "ur helper"
@@ -58,7 +58,7 @@ _url="${url}"
     "${pkgname}-${pkgver}.tar.gz::${_url}/archive/refs/tags/${pkgver}.tar.gz"
   ) && \
   sha256sums+=(
-    '8e80d4356ab90500910de674e4cc57ec3d06e41aa3ad38d1cfca02ec334fe0b1'
+    'b1cafe23baf9c54d158d4cca7712c69034406d533248ff0b7425f194fa0f8d07'
   )
 validpgpkeys=(
   # Truocolo <truocolo@aol.com>

@@ -1,6 +1,6 @@
 pkgbase = fur
 	pkgdesc = ur helper
-	pkgver = 1.0.0.0.0.0.0
+	pkgver = 1.0.0.0.0.0.0.0
 	pkgrel = 1
 	url = https://github.com/themartiancompany/fur
 	arch = any
@@ -8,8 +8,8 @@ pkgbase = fur
 	checkdepends = shellcheck
 	depends = git
 	optdepends = inteppacman: manage android native applications packages
-	source = fur-1.0.0.0.0.0.0.tar.gz::https://github.com/themartiancompany/fur/archive/refs/tags/1.0.0.0.0.0.0.tar.gz
+	source = fur-1.0.0.0.0.0.0.0.tar.gz::https://github.com/themartiancompany/fur/archive/refs/tags/1.0.0.0.0.0.0.0.tar.gz
 	validpgpkeys = 97E989E6CF1D2C7F7A41FF9F95684DBE23D6A3E9
-	sha256sums = 8e80d4356ab90500910de674e4cc57ec3d06e41aa3ad38d1cfca02ec334fe0b1
+	sha256sums = b1cafe23baf9c54d158d4cca7712c69034406d533248ff0b7425f194fa0f8d07
 
 pkgname = fur
