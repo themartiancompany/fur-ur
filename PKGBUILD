@@ -23,6 +23,7 @@ license=(
 )
 depends=(
   "git"
+  "libcrash-bash"
 )
 _os="$( \
   uname \
