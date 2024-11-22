@@ -6,8 +6,8 @@
 _offline="false"
 _git="false"
 pkgname=fur
-pkgver=1.0.0.0.0.0.0.0.0.0.0
-_commit="b43fe0d7b8156445b15e58517d130b04639bf49d"
+pkgver=1.0.0.0.0.0.0.0.0.0.0.0
+_commit="9ce189a2fef28db96a423c430db0b8df0bd4bf93"
 pkgrel=1
 _pkgdesc=(
   "ur helper"
@@ -25,6 +25,7 @@ license=(
 depends=(
   "git"
   "libcrash-bash"
+  "inteppacman"
 )
 _os="$( \
   uname \
@@ -34,7 +35,6 @@ optdepends=(
 [[ "${_os}" != "GNU/Linux" ]] && \
 [[ "${_os}" == "Android" ]] && \
   optdepends+=(
-    'inteppacman: manage android native applications packages'
   )
 makedepends=()
 checkdepends=(
@@ -60,7 +60,7 @@ _url="${url}"
     "${pkgname}-${pkgver}.tar.gz::${_url}/archive/refs/tags/${pkgver}.tar.gz"
   ) && \
   sha256sums+=(
-    '24c9df7fd574a319a0b6ef996805184a5e700e4c46dbcbf88ef768c72c2a8b1e'
+    '6959221ff5ed445a83654359cdf7356a6c76e5593ce13d51f4dca5f69c8d36bc'
   )
 validpgpkeys=(
   # Truocolo <truocolo@aol.com>
