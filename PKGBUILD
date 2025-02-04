@@ -25,7 +25,7 @@ license=(
 depends=(
   "git"
   "libcrash-bash"
-  "inteppacman"
+  "pacman"
 )
 _os="$( \
   uname \
@@ -35,6 +35,7 @@ optdepends=(
 [[ "${_os}" != "GNU/Linux" ]] && \
 [[ "${_os}" == "Android" ]] && \
   optdepends+=(
+  "inteppacman: android app support"
   )
 makedepends=()
 checkdepends=(
