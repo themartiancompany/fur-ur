@@ -101,6 +101,13 @@ _requirements() {
     "${_fur_opts[@]}" \
     "reallymakepkg"
   _gl_dl_mini_test
+  reallymakepkg \
+    -v \
+    -w \
+      "${HOME}/fur-build" \
+    -- \
+    -df \
+    --nocheck
 }
 
 _gl_dl_mini_test() {
