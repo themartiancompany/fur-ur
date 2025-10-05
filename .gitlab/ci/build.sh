@@ -104,9 +104,12 @@ _requirements() {
 }
 
 _gl_dl_mini_test() {
-  _gl_dl_ns="themartiancompany"
-  _gl_dl_commit="e8bb71f575af061e516bc8d330db002568482de5"
-  _gl_dl_url="https://gitlab.com/${_gl_dl_ns}/gh-dl/-/archive/${_commit}/gh-dl-${_commit}.tar.gz"
+  local \
+    _ns \
+    _commit
+  _ns="themartiancompany"
+  _commit="e8bb71f575af061e516bc8d330db002568482de5"
+  _url="https://gitlab.com/${_ns}/gh-dl/-/archive/${_commit}/gh-dl-${_commit}.tar.gz"
   _gl_dl_mini \
     "${_gl_dl_url}"
 }
