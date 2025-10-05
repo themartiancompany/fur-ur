@@ -47,7 +47,7 @@ _fur_mini() {
   _mktemp_opts+=(
     --dry-run
     --directory
-    --tmpdir="${tmp_dir_base}"
+    --tmpdir="${_tmp_dir_base}"
   )
   _clone_opts+=(
     --branch="${_pkg}"
