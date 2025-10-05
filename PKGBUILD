@@ -44,6 +44,12 @@ if [[ ! -v "_evmfs" ]]; then
 fi
 _offline="false"
 _git="false"
+_git_http_host="gitlab"
+if [[ "${_git_http_host}" == "gitlab" ]]; then
+  _archive_format="tar.gz"
+elif [[ "${_git_http_host}" == "github" ]]; then
+  _archive_format="zip"
+fi
 pkgname=fur
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1"
 _commit="a4322f4dbe4a62e1f448f7a5e7aa3dfdc5e40c6d"
@@ -112,27 +118,31 @@ if [[ "${_evmfs}" == "true" ]]; then
   makedepends+=(
     "evmfs"
   )
-  _src="${_evmfs_archive_src}"
-  _sum="${_archive_sum}"
-  source+=(
-    "${_archive_sig_src}"
-  )
-  sha256sums+=(
-    "${_archive_sig_sum}"
-  )
-elif [[ "${_git}" == true ]]; then
-  makedepends+=(
-    "git"
-  )
-  _src="${_tarname}::git+${_url}#${_tag_name}=${_tag}?signed"
-  _sum="SKIP"
-elif [[ "${_git}" == false ]]; then
-  if [[ "${_tag_name}" == 'pkgver' ]]; then
-    _src="${_tarname}.tar.gz::${_url}/archive/refs/tags/${_tag}.tar.gz"
-    _sum="d4f4179c6e4ce1702c5fe6af132669e8ec4d0378428f69518f2926b969663a91"
-  elif [[ "${_tag_name}" == "commit" ]]; then
-    _src="${_tarname}.zip::${_url}/archive/${_commit}.zip"
+  if [[ "${_git}" == "false" ]]; then
+    _src="${_evmfs_archive_src}"
     _sum="${_archive_sum}"
+    source+=(
+      "${_archive_sig_src}"
+    )
+    sha256sums+=(
+      "${_archive_sig_sum}"
+    )
+  fi
+elif [[ "${_evmfs}" == "false" ]]; then
+  if [[ "${_git}" == true ]]; then
+    makedepends+=(
+      "git"
+    )
+    _src="${_tarname}::git+${_url}#${_tag_name}=${_tag}?signed"
+    _sum="SKIP"
+  elif [[ "${_git}" == false ]]; then
+    if [[ "${_tag_name}" == 'pkgver' ]]; then
+      _src="${_tarname}.tar.gz::${_url}/archive/refs/tags/${_tag}.tar.gz"
+      _sum="d4f4179c6e4ce1702c5fe6af132669e8ec4d0378428f69518f2926b969663a91"
+    elif [[ "${_tag_name}" == "commit" ]]; then
+      _src="${_tarname}.${_archive_format}::${_url}/archive/${_commit}.${_archive_format}"
+      _sum="${_archive_sum}"
+    fi
   fi
 fi
 source=(
@@ -142,12 +152,14 @@ sha256sums=(
   "${_sum}"
 )
 validpgpkeys=(
-  # Truocolo <truocolo@aol.com>
+  # Truocolo
+  #   <truocolo@aol.com>
   '97E989E6CF1D2C7F7A41FF9F95684DBE23D6A3E9'
   'DD6732B02E6C88E9E27E2E0D5FC6652B9D9A6C01'
-  # Truocolo <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
+  #   <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
   'F690CBC17BD1F53557290AF51FC17D540D0ADEED'
-  # Pellegrino Prevete (dvorak) <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
+  # Pellegrino Prevete (dvorak)
+  #   <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
   '12D8E3D7888F741E89F86EE0FEC8567A644F1D16'
 )
 
