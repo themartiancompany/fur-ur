@@ -93,6 +93,10 @@ _fur_mini \
 _fur_mini \
   "fur" \
   "${fur_mini_opts[@]}"
+pacman \
+  -S \
+  --noconfirm \
+  "sudo"
 fur \
   -v \
   -p \
