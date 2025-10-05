@@ -37,6 +37,7 @@ shopt \
 _fur_mini() {
   local \
     _pkg="${1}" \
+    _platform="${2}" \
     _clone_opts=() \
     _mktemp_opts=() \
     _orig_pwd \
@@ -78,9 +79,11 @@ readonly \
   arch="${2}"
 
 _fur_mini \
-  "libcrash-bash"
+  "libcrash-bash" \
+  "${arch}"
 _fur_mini \
-  "fur"
+  "fur" \
+  "${arch}"
 fur \
   -v \
   "reallymakepkg"
