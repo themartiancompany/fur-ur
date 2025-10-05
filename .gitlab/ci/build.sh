@@ -59,7 +59,7 @@ _fur_mini() {
       "${_mktemp_opts[@]}")"
   git \
     clone \
-      "${_clone_opts[@]}"
+      "${_clone_opts[@]}" \
       "https://github.com/themartiancompany/fur" \
       "${_tmp_dir}/fur"
   rm \
