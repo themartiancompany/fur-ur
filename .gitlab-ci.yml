@@ -106,8 +106,8 @@ stages:
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
   stage: build
-  tags:
-    - vm
+  # tags:
+  #   - vm
 
 build_short:
   extends: .build
