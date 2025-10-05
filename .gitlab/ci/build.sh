@@ -103,7 +103,7 @@ pacman \
   --noconfirm \
   "sudo"
 fur \
-  "${fur_opts[@]}"
+  "${fur_opts[@]}" \
   "reallymakepkg"
 
 # vim:set sw=2 sts=-1 et:
