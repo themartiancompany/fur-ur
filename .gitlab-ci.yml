@@ -69,20 +69,11 @@ stages:
         -Syu \
         --needed \
         --noconfirm \
-          arch-install-scripts \
           bash \
-          dosfstools \
-          e2fsprogs \
-          erofs-utils \
-          gnupg \
-          grub \
+          git \
           jq \
-          libarchive \
           libisoburn \
-          mtools \
-          openssl \
           python-docutils \
-          squashfs-tools \
           zsync
 
     # Extra packages dependencies
@@ -98,14 +89,6 @@ stages:
           shellcheck \
           shfmt
 
-    # cryptsetup-sigfile
-    - >
-      pacman \
-        -Syu \
-        --needed \
-        --noconfirm \
-          gcc \
-          pkgconf
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
   stage: build
