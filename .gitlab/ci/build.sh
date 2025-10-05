@@ -27,23 +27,27 @@
 # $1: platform
 # $2: architecture
 
-set -euo pipefail
-shopt -s extglob
+set \
+  -euo \
+    pipefail
+shopt \
+  -s \
+    extglob
 
 _fur_mini() {
   local \
     _pkg="${1}" \
     _clone_opts=() \
-    _tmp_dir \
+    _mktemp_opts=() \
     _orig_pwd \
-    _tmp_dir_base \
-    _mktemp_opts=()
+    _tmp_dir \
+    _tmp_dir_base
   _orig_pwd="${PWD}"
-  _tmp_dir_base="${orig_pwd}/tmp"
+  _tmp_dir_base="${_orig_pwd}/tmp"
   _mktemp_opts+=(
     --dry-run
     --directory
-    --tmpdir="${tmpdir_base}"
+    --tmpdir="${tmp_dir_base}"
   )
   _clone_opts+=(
     --branch="${_pkg}"
