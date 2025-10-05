@@ -106,12 +106,13 @@ _requirements() {
 _gl_dl_mini_test() {
   local \
     _ns \
-    _commit
+    _commit \
+    _url
   _ns="themartiancompany"
   _commit="e8bb71f575af061e516bc8d330db002568482de5"
   _url="https://gitlab.com/${_ns}/gh-dl/-/archive/${_commit}/gh-dl-${_commit}.tar.gz"
   _gl_dl_mini \
-    "${_gl_dl_url}"
+    "${_url}"
 }
 
 _gl_dl_mini() {
