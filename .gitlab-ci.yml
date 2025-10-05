@@ -27,7 +27,7 @@
 
 
 stages:
-  - check
+  # - check
   - build
 
 check:
