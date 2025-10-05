@@ -75,35 +75,37 @@ _fur_mini() {
     "${_tmp_dir}/fur"
 }
 
+_requirements() {
+  local \
+    _fur_mini_opts=() \
+    _fur_opts=()
+  _fur_mini_opts+=(
+    "${platform}"
+  )
+  _fur_mini \
+    "libcrash-bash" \
+    "${_fur_mini_opts[@]}"
+  _fur_mini \
+    "fur" \
+    "${_fur_mini_opts[@]}"
+  _fur_opts+=(
+    -v
+    -p
+      "pacman"
+  )
+  pacman \
+    -S \
+    --noconfirm \
+    "sudo"
+  fur \
+    "${_fur_opts[@]}" \
+    "reallymakepkg"
+}
+
 readonly \
   platform="${1}" \
   arch="${2}"
 
-fur_mini_opts=(
-  "${platform}"
-)
-fur_opts=(
-  -v
-  -p
-    "pacman"
-)
-_fur_mini \
-  "libcrash-bash" \
-  "${fur_mini_opts[@]}"
-_fur_mini \
-  "fur" \
-  "${fur_mini_opts[@]}"
-fur_opts=(
-  -v
-  -p
-    "pacman"
-)
-pacman \
-  -S \
-  --noconfirm \
-  "sudo"
-fur \
-  "${fur_opts[@]}" \
-  "reallymakepkg"
+_requirements
 
 # vim:set sw=2 sts=-1 et:
