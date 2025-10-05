@@ -50,7 +50,9 @@ if [[ "${_git_http_host}" == "gitlab" ]]; then
 elif [[ "${_git_http_host}" == "github" ]]; then
   _archive_format="zip"
 fi
-pkgname=fur
+_py="python"
+_pkg=fur
+pkgname="${_pkg}"
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1"
 _commit="a4322f4dbe4a62e1f448f7a5e7aa3dfdc5e40c6d"
 pkgrel=1
@@ -63,7 +65,7 @@ arch=(
 )
 _http="https://github.com"
 _ns="themartiancompany"
-url="${_http}/${_ns}/${pkgname}"
+url="${_http}/${_ns}/${_pkg}"
 license=(
   'AGPL3'
 )
@@ -93,6 +95,7 @@ if [[ "${_os}" != "GNU/Linux" ]] && \
 fi
 makedepends=(
   "make"
+  "${_py}-docutils"
 )
 checkdepends=(
   "shellcheck"
@@ -100,9 +103,9 @@ checkdepends=(
 _url="${url}"
 _tag="${_commit}"
 _tag_name="commit"
-_tarname="${pkgname}-${_tag}"
+_tarname="${_pkg}-${_tag}"
 if [[ "${_offline}" == "true" ]]; then
-  _url="file://${HOME}/${pkgname}"
+  _url="file://${HOME}/${_pkg}"
 fi
 _archive_sum="49ceae9d59420faad7dd736d0cef3cc8aae740a1723a76d314b58b1e98334efe"
 _archive_sig_sum="e9fafb270d13cd5b9c67d0d6a5e401df666026e3abd209cb7e7563aa51a36fd3"
