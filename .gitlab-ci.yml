@@ -140,9 +140,9 @@ build_long:
       - master
       - merge_requests
     changes:
-      - archiso/*
-      - configs/**/*
-      - Makefile
+      - PKGBUILD
+      - README.md
+      - COPYING
       - .gitlab-ci.yml
       - .gitlab/ci/*
   interruptible: true
