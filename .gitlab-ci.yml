@@ -49,7 +49,7 @@ stages:
 #   stage: check
 #   interruptible: true
 
-build:
+.build:
   artifacts:
     reports:
       metrics: output/metrics.txt
