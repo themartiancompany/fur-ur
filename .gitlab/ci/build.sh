@@ -82,13 +82,22 @@ readonly \
 fur_mini_opts=(
   "${platform}"
 )
-
+fur_opts=(
+  -v
+  -p
+    "pacman"
+)
 _fur_mini \
   "libcrash-bash" \
   "${fur_mini_opts[@]}"
 _fur_mini \
   "fur" \
   "${fur_mini_opts[@]}"
+fur \
+  -v \
+  -p \
+    "pacman" \
+  "inteppacman"
 fur \
   -v \
   "reallymakepkg"
