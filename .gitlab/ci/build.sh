@@ -64,6 +64,7 @@ _fur_mini() {
       "https://github.com/themartiancompany/fur" \
       "${_tmp_dir}/fur"
   rm \
+    -rf \
     "${_tmp_dir}/fur/${_platform}/any/"*".pkg.tar."*".sig"
   pacman \
     -Udd \
@@ -78,12 +79,16 @@ readonly \
   platform="${1}" \
   arch="${2}"
 
+fur_mini_opts=(
+  "${platform}"
+)
+
 _fur_mini \
   "libcrash-bash" \
-  "${arch}"
+  "${fur_mini_opts[@]}"
 _fur_mini \
   "fur" \
-  "${arch}"
+  "${fur_mini_opts[@]}"
 fur \
   -v \
   "reallymakepkg"
