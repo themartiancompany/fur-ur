@@ -156,6 +156,17 @@ jobs:
               -p \
               "${HOME}"
       - name:
+          Writes the gl-dl private token in the container.
+        run: |
+          # Setup gl-dl-private token
+          /entrypoint.sh \
+            mkdir \
+              -p \
+              "${HOME}/.config/gl-dl"
+          echo \
+            "${GL_DL_PRIVATE_TOKEN}" > \
+            "${HOME}/.config/gl-dl/default.txt"
+      - name:
           Installs Python.
         run: |
           /entrypoint.sh \
