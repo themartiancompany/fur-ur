@@ -93,17 +93,17 @@ _fur_mini \
 _fur_mini \
   "fur" \
   "${fur_mini_opts[@]}"
+fur_opts=(
+  -v
+  -p
+    "pacman"
+)
 pacman \
   -S \
   --noconfirm \
   "sudo"
 fur \
-  -v \
-  -p \
-    "pacman" \
-  "inteppacman"
-fur \
-  -v \
+  "${fur_opts[@]}"
   "reallymakepkg"
 
 # vim:set sw=2 sts=-1 et:
