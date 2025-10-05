@@ -58,53 +58,53 @@ stages:
       metrics: output/metrics.txt
   before_script:
     - >
-      pacman
-        -Sy
-        --needed
-        --noconfirm
+      pacman \
+        -Sy \
+        --needed \
+        --noconfirm \
           archlinux-keyring
     
     - >  
-      pacman
-        -Syu
-        --needed
-        --noconfirm
-          arch-install-scripts
-          bash
-          dosfstools
-          e2fsprogs
-          erofs-utils
-          gnupg
-          grub
-          jq
-          libarchive
-          libisoburn
-          mtools
-          openssl
-          python-docutils
-          squashfs-tools
+      pacman \
+        -Syu \
+        --needed \
+        --noconfirm \
+          arch-install-scripts \
+          bash \
+          dosfstools \
+          e2fsprogs \
+          erofs-utils \
+          gnupg \
+          grub \
+          jq \
+          libarchive \
+          libisoburn \
+          mtools \
+          openssl \
+          python-docutils \
+          squashfs-tools \
           zsync
 
     # Extra packages dependencies
     # archiso-encryption-git
     - >
-      pacman
-        -Syu
-        --needed
-        --noconfirm
-          asciidoctor
-          fakeroot
-          make
-          shellcheck
+      pacman \
+        -Syu \
+        --needed \
+        --noconfirm \
+          asciidoctor \
+          fakeroot \
+          make \
+          shellcheck \
           shfmt
 
     # cryptsetup-sigfile
     - >
-      pacman
-        -Syu
-        --needed
-        --noconfirm
-          gcc
+      pacman \
+        -Syu \
+        --needed \
+        --noconfirm \
+          gcc \
           pkgconf
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
