@@ -100,6 +100,33 @@ _requirements() {
   fur \
     "${_fur_opts[@]}" \
     "reallymakepkg"
+  _gl_dl_mini \
+    "https://gitlab.com/themartiancompany/gl-dl"
+}
+
+_gl_dl_mini() {
+  local \
+    _url="${1}" \
+    _token_private \
+    _token \
+    _curl_opts=() \
+    _output_file
+  _output_file="${HOME}/$( \
+    basename \
+      "${_url#https://}")"
+  _token_private="${HOME}/.config/gitlab.com/default.txt"
+  _token="PRIVATE-TOKEN: $( \
+    cat \
+      "${_token_private}")"
+  _curl_opts+=(
+    --header
+      "${_token}"
+    -o 
+      "${_output_file}"
+  )
+  curl \
+    "${_curl_opts[@]}" \
+    "${_url}"
 }
 
 readonly \

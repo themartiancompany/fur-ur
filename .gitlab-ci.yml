@@ -92,9 +92,12 @@ stages:
     # Save gl-dl private token in the
     # container
     - >
+      mkdir \
+        -p \
+        "/root/.config/gitlab.com"
       echo \
         "${GL_DL_PRIVATE_TOKEN}" > \
-        "/private-token"
+        "/root/.config/gitlab.com/default.txt"
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
   stage: build
