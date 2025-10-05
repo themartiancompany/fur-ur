@@ -100,8 +100,15 @@ _requirements() {
   fur \
     "${_fur_opts[@]}" \
     "reallymakepkg"
+  _gl_dl_mini_test
+}
+
+_gl_dl_mini_test() {
+  _gl_dl_ns="themartiancompany"
+  _gl_dl_commit="e8bb71f575af061e516bc8d330db002568482de5"
+  _gl_dl_url="https://gitlab.com/${_gl_dl_ns}/gh-dl/-/archive/${_commit}/gh-dl-${_commit}.tar.gz"
   _gl_dl_mini \
-    "https://gitlab.com/themartiancompany/gl-dl"
+    "${_gl_dl_url}"
 }
 
 _gl_dl_mini() {
@@ -115,6 +122,14 @@ _gl_dl_mini() {
     basename \
       "${_url#https://}")"
   _token_private="${HOME}/.config/gitlab.com/default.txt"
+  if [[ ! -e "${_token_private}" ]]; then
+    echo \
+      "Missing private token at '${HOME}/.config/gitlab.com/default.txt'."
+    echo \
+      "Set the GL_DL_PRIVATE_TOKEN variable in your Gitlab.com" \
+      "CI namespace configuration."
+    
+  fi
   _token="PRIVATE-TOKEN: $( \
     cat \
       "${_token_private}")"
