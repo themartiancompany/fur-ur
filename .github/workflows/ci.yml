@@ -108,6 +108,7 @@ jobs:
       # to run the binary anyway.
       # Relevant internal source code of GitHub Actions:
       # https://github.com/actions/toolkit/blob/930c89072712a3aac52d74b23338f00bb0cfcb24/packages/io/src/io-util.ts#L167-L177
+
       - name:
           Fixes executable bit for all binaries in "${PREFIX}/bin" for all users.
         run: |
@@ -136,6 +137,16 @@ jobs:
             -R \
             "1000:1000" \
             "$(pwd)"
+      - name:
+          Gives information about the environment.
+        run: |
+          /entrypoint.sh \
+            echo \
+              "Current position: ${PWD})"
+          /entrypoint.sh \
+            ls \
+              -lsh \
+              "${PWD}"
       - name:
           Setup user's home.
         run: |
