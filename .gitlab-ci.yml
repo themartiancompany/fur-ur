@@ -30,24 +30,24 @@ stages:
   # - check
   - build
 
-check:
-  before_script:
-    - pacman \
-        -Sy \
-        --needed \
-        --noconfirm \
-          archlinux-keyring
-    - pacman \
-        -Syu \
-        --noconfirm \
-        --needed \
-          make \
-          shellcheck
-  script:
-    - make \
-        check
-  stage: check
-  interruptible: true
+# check:
+#   before_script:
+#     - pacman \
+#         -Sy \
+#         --needed \
+#         --noconfirm \
+#           archlinux-keyring
+#     - pacman \
+#         -Syu \
+#         --noconfirm \
+#         --needed \
+#           make \
+#           shellcheck
+#   script:
+#     - make \
+#         check
+#   stage: check
+#   interruptible: true
 
 .build:
   artifacts:
