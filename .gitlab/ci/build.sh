@@ -78,7 +78,9 @@ _fur_mini() {
 _requirements() {
   local \
     _fur_mini_opts=() \
-    _fur_opts=()
+    _fur_opts=() \
+    _pkgname
+  _pkgname="${pkg%-ur}"
   _fur_mini_opts+=(
     "${platform}"
   )
@@ -100,51 +102,126 @@ _requirements() {
   fur \
     "${_fur_opts[@]}" \
     "reallymakepkg"
-  _gl_dl_mini_test
-  reallymakepkg \
-    -v \
-    -w \
-      "${HOME}/fur-build" \
-    -- \
-    -df \
-    --nocheck
+  _commit="$( \
+    recipe-get \
+      "/home/user/${_pkgname}/PKGBUILD" \
+      "_commit")"
+  _gl_dl_mini \
+    "${ns}" \
+    "${_pkgname}" \
+    "${_commit}"
+  mv \
+    "${HOME}/${_pkgname}-${_commit}.tar.gz" \
+    "/home/user/${_pkgname}"
 }
 
-_gl_dl_mini_test() {
+_build() {
   local \
-    _ns \
-    _commit \
-    _url
-  _ns="themartiancompany"
-  _commit="e8bb71f575af061e516bc8d330db002568482de5"
-  _url="https://gitlab.com/${_ns}/gh-dl/-/archive/${_commit}/gh-dl-${_commit}.tar.gz"
-  _gl_dl_mini \
-    "${_url}"
+    _reallymakepkg_opts=() \
+    _makepkg_opts=() \
+    _cmd=() \
+    _pkgname
+  _pkgname="${pkg%-ur}"
+  _reallymakepkg_opts+=(
+    -v
+    -w
+      "'${HOME}/${_pkgname}-build'"
+  )
+  _makepkg_opts+=(
+    -df
+    --nocheck
+  )
+  _cmd+=(
+    "cd"
+      "/home/user/${_pkgname}" "&&"
+    "reallymakepkg"
+      "${_reallymakepkg_opts[@]}"
+      "--"
+      "${_makepkg_opts[@]}"
+  )
+  su \
+    -c \
+    "${_cmd[*]}" - \
+    "user"
+  pacman \
+    -Udd \
+    --noconfirm \
+    "/home/user/${_pkgname}/"*".pkg.tar."*
+  for _file \
+    in "/home/user/${_pkgname}/"*".pkg.tar."*; do
+    mv \
+      "${_file}" \
+      "dogeos-gnu-$( \
+        basename \
+          "${_file}")"
+  done
+  for _file \
+    in "./"*".pkg.tar."*; do
+    gpg \
+      --sign \
+      --detach-sign \
+      "${_file}"
+  done
 }
 
 _gl_dl_mini() {
+  local \
+    _ns="${1}" \
+    _pkg="${2}" \
+    _commit="${3}" \
+    _url \
+    _http \
+    _repo \
+    _tarname \
+    _msg=()
+  _tarname="${_pkg}-${_commit}"
+  _http="https://gitlab.com"
+  _repo="${_http}/${_ns}/${_pkg}"
+  _url="${_repo}/-/archive/${_commit}/${_tarname}.tar.gz"
+  _msg=(
+    "Downloading '${_tarname}'"
+    "source tarball from"
+    "'${_ns}' namespace on"
+    "Gitlab.com."
+  echo \
+    "${_msg[*]}"
+  _gl_dl_retrieve \
+    "${_url}"
+}
+
+_gl_dl_retrieve() {
   local \
     _url="${1}" \
     _token_private \
     _token \
     _curl_opts=() \
-    _output_file
+    _output_file \
+    _msg=()
   _output_file="${HOME}/$( \
     basename \
       "${_url#https://}")"
   _token_private="${HOME}/.config/gitlab.com/default.txt"
   if [[ ! -e "${_token_private}" ]]; then
+    _msg=(
+      "Missing private token at"
+      "'${_token_private}'."
+    )
     echo \
-      "Missing private token at '${HOME}/.config/gitlab.com/default.txt'."
-    echo \
-      "Set the GL_DL_PRIVATE_TOKEN variable in your Gitlab.com" \
+      "${_msg[*]}"
+    _msg=(
+      "Set the 'GL_DL_PRIVATE_TOKEN'"
+      "variable in your Gitlab.com" \
       "CI namespace configuration."
-    
+    )
+    echo \
+      "${_msg[*]}"
   fi
   _token="PRIVATE-TOKEN: $( \
     cat \
       "${_token_private}")"
   _curl_opts+=(
+    --silent
+    -L
     --header
       "${_token}"
     -o 
@@ -157,8 +234,11 @@ _gl_dl_mini() {
 
 readonly \
   platform="${1}" \
-  arch="${2}"
+  arch="${2}" \
+  ns="${3}" \
+  pkg="${4}"
 
 _requirements
+_build
 
 # vim:set sw=2 sts=-1 et:
