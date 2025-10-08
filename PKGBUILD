@@ -53,8 +53,8 @@ fi
 _py="python"
 _pkg=fur
 pkgname="${_pkg}"
-pkgver="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1"
-_commit="a4322f4dbe4a62e1f448f7a5e7aa3dfdc5e40c6d"
+pkgver="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
+_commit="05fd6715c8667d807ac602d7dc7e36b1c17633f2"
 pkgrel=1
 _pkgdesc=(
   "Fallback Ur."
