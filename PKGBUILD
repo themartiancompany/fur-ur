@@ -45,6 +45,7 @@ fi
 _offline="false"
 _git="false"
 _git_http_host="gitlab"
+_archive_format="tar.gz"
 if [[ "${_git_http_host}" == "gitlab" ]]; then
   _archive_format="tar.gz"
 elif [[ "${_git_http_host}" == "github" ]]; then
@@ -114,9 +115,9 @@ _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_dir="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}"
 _evmfs_archive_uri="${_evmfs_dir}/${_archive_sum}"
-_evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
+_evmfs_archive_src="${_tarname}.${_archive_format}::${_evmfs_archive_uri}"
 _archive_sig_uri="${_evmfs_dir}/${_archive_sig_sum}"
-_archive_sig_src="${_tarname}.zip.sig::${_archive_sig_uri}"
+_archive_sig_src="${_tarname}.${_archive_format}.sig::${_archive_sig_uri}"
 if [[ "${_evmfs}" == "true" ]]; then
   makedepends+=(
     "evmfs"
