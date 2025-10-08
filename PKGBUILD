@@ -55,7 +55,7 @@ _py="python"
 _pkg=fur
 pkgname="${_pkg}"
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
-_commit="05fd6715c8667d807ac602d7dc7e36b1c17633f2"
+_commit="7abf8e2cd7c5a447c8bfdfd7e61e6537a56b2480"
 pkgrel=1
 _pkgdesc=(
   "Fallback Ur."
@@ -108,8 +108,8 @@ _tarname="${_pkg}-${_tag}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${_pkg}"
 fi
-_archive_sum="b08a8edf5d5a3ea6f74376e1a50b7fef326ea81a40418db565fc80b0c452e58f"
-_archive_sig_sum="7e4a159988d8f388420cae0fa72d90143dda370d9a75d989f169aab0a49ddc2a"
+_archive_sum="5319da4e100430551104825f06f8de58136f744b9dd90df99d60ea1bc178b03c"
+_archive_sig_sum="ec5f7364a8c51c1d8f53c85f90aa791e7e7c98997a76e6852e19a4142e8fd200"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
