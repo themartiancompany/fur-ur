@@ -128,7 +128,7 @@ stages:
       - dogeos-gnu-*.pkg.tar.*
     reports:
       metrics: output/metrics.txt
-      dotenv: build.env
+      dotenv: /build.env
   before_script:
     - >
       pacman \
