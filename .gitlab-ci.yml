@@ -158,56 +158,6 @@ stages:
       mkdir \
         -p \
         "/root/.config/gitlab.com"
-      echo \
-        "${
-  stage: build
-  artifacts:
-    paths:
-      - dogeos-gnu-*.pkg.tar.*
-    reports:
-      dotenv: build.env
-
-.release:
-  artifacts:
-    reports:
-      metrics: output/metrics.txt
-  before_script:
-    - >
-      pacman \
-        -Sy \
-        --needed \
-        --noconfirm \
-          archlinux-keyring
-    - >  
-      pacman \
-        -Su \
-        --needed \
-        --noconfirm \
-          bash \
-          git \
-          jq \
-          python-docutils
-
-    # Extra packages dependencies
-    # archiso-encryption-git
-    - >
-      pacman \
-        -Su \
-        --needed \
-        --noconfirm \
-          asciidoctor \
-          fakeroot \
-          gnupg \
-          make \
-          shellcheck \
-          shfmt
-
-    # Save gl-dl private token in the
-    # container
-    - >
-      mkdir \
-        -p \
-        "/root/.config/gitlab.com"
       if [[ "${GL_DL_PRIVATE_TOKEN}" == "" ]] ; then
         _msg=(
          "Variable 'GL_DL_PRIVATE_TOKEN' empty."
@@ -262,11 +212,13 @@ stages:
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
   stage: release
+  dependencies:
+    - build
   artifacts:
     paths:
       - dogeos-gnu-*.pkg.tar.*
-  # tags:
-  #   - vm
+    reports:
+      dotenv: build.env
 
 build:
   extends: .build
