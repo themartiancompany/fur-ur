@@ -133,9 +133,28 @@ build:
 .release:
   extends: .build
   after_script:
-    - glab auth login --job-token $CI_JOB_TOKEN
-    - glab release create $CI_COMMIT_TAG
-    - glab release upload $CI_COMMIT_TAG dogeos-gnu-*.pkg.tar.*
+    - >
+      glab \
+        auth \
+          login \
+            --hostname \
+              "gitlab.com" \
+            --api-protocol \
+              "https" \
+            --token \
+              "$(cat \
+                   "${HOME}/.config/gitlab.com/default.txt")"
+    - >
+      glab \
+        release \
+          create \
+            $CI_COMMIT_TAG
+    - >
+      glab \
+        release \
+          upload \
+            $CI_COMMIT_TAG \
+            dogeos-gnu-*.pkg.tar.*
 
 release:
   stage: build
