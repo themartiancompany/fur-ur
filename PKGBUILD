@@ -142,7 +142,7 @@ elif [[ "${_evmfs}" == "false" ]]; then
   elif [[ "${_git}" == false ]]; then
     if [[ "${_tag_name}" == 'pkgver' ]]; then
       _src="${_tarname}.tar.gz::${_url}/archive/refs/tags/${_tag}.tar.gz"
-      _sum="d4f4179c6e4ce1702c5fe6af132669e8ec4d0378428f69518f2926b969663a91"
+      _sum="${_archive_sum}"
     elif [[ "${_tag_name}" == "commit" ]]; then
       _src="${_tarname}.${_archive_format}::${_url}/archive/${_commit}.${_archive_format}"
       _sum="${_archive_sum}"
