@@ -146,7 +146,7 @@ elif [[ "${_evmfs}" == "false" ]]; then
       _src="${_tarname}.tar.gz::${_url}/archive/refs/tags/${_tag}.tar.gz"
       _sum="${_archive_sum}"
     elif [[ "${_tag_name}" == "commit" ]]; then
-      _src="${_tarname}.${_archive_format}::${_url}/archive/${_commit}.${_archive_format}"
+      _src="${_tarname}.${_archive_format}::${_url}/archive/${_tag}.${_archive_format}"
       _sum="${_archive_sum}"
     fi
   fi
