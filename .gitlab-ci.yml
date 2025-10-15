@@ -110,7 +110,7 @@ stages:
         "/home/user"
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
-  stage: build
+  # stage: build
 
 build:
   extends: .build
