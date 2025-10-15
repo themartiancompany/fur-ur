@@ -208,18 +208,38 @@ stages:
       mkdir \
         -p \
         "/root/.config/gitlab.com"
-      echo \
-        "${GL_DL_PRIVATE_TOKEN}" > \
-        "/root/.config/gitlab.com/default.txt"
-      echo \
-        "${BUR_GPG_KEY}" | \
-        base64 \
-          -d > \
-        "/root/bur.asc"
-      gpg \
-        --import \
-          "/root/bur.asc" || \
-        true
+      if [[ "${GL_DL_PRIVATE_TOKEN}" == "" ]] ; then
+        _msg=(
+         "Variable 'GL_DL_PRIVATE_TOKEN' empty."
+        )
+        echo \
+          ${_msg[*]}"
+        exit \
+          1
+      elif [[ "${GL_DL_PRIVATE_TOKEN}" != "" ]] ; then
+        echo \
+          "${GL_DL_PRIVATE_TOKEN}" > \
+          "/root/.config/gitlab.com/default.txt"
+      fi
+      if [[ "${BUR_GPG_KEY}" == "" ]] ; then
+        _msg=(
+         "Variable 'BUR_GPG_KEY' empty."
+        )
+        echo \
+          ${_msg[*]}"
+        exit \
+          1
+      elif [[ "${BUR_GPG_KEY}" != "" ]] ; then
+        echo \
+          "${BUR_GPG_KEY}" | \
+          base64 \
+            -d > \
+          "/root/bur.asc"
+        gpg \
+          --import \
+            "/root/bur.asc" || \
+          true
+      fi
 
     # Setup user
     - >
