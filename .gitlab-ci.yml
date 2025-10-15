@@ -31,6 +31,7 @@ default:
 
 stages:
   - build
+  - release
 
 .build:
   artifacts:
