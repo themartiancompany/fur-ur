@@ -106,14 +106,14 @@ stages:
         -R \
         "user:user" \
         "/home/user"
-      echo \
-        "GL_DL_PRIVATE_TOKEN='${GL_DL_PRIVATE_TOKEN}'" >> \
-        "build.env"
-      echo \
-        "BUR_GPG_KEY='${BUR_GPG_KEY}'" >> \
-          "build.env"
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
+    - echo \
+        "GL_DL_PRIVATE_TOKEN='${GL_DL_PRIVATE_TOKEN}'" >> \
+        "build.env"
+    -  echo \
+         "BUR_GPG_KEY='${BUR_GPG_KEY}'" >> \
+         "build.env"
   stage: build
   artifacts:
     paths:
