@@ -118,6 +118,8 @@ _evmfs_archive_uri="${_evmfs_dir}/${_archive_sum}"
 _evmfs_archive_src="${_tarname}.${_archive_format}::${_evmfs_archive_uri}"
 _archive_sig_uri="${_evmfs_dir}/${_archive_sig_sum}"
 _archive_sig_src="${_tarname}.${_archive_format}.sig::${_archive_sig_uri}"
+source=()
+sha256sums=()
 if [[ "${_evmfs}" == "true" ]]; then
   makedepends+=(
     "evmfs"
@@ -149,10 +151,10 @@ elif [[ "${_evmfs}" == "false" ]]; then
     fi
   fi
 fi
-source=(
+source+=(
   "${_src}"
 )
-sha256sums=(
+sha256sums+=(
   "${_sum}"
 )
 validpgpkeys=(
