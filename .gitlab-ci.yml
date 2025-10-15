@@ -31,9 +31,9 @@ default:
 
 stages:
   - build
-  - release
 
 .build:
+  stage: build
   artifacts:
     paths:
       - dogeos-gnu-*.pkg.tar.*
@@ -112,10 +112,8 @@ stages:
         "/home/user"
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
-  # stage: build
 
 build:
-  stage: build
   extends: .build
   parallel:
     matrix:
@@ -140,7 +138,7 @@ build:
     - glab release upload $CI_COMMIT_TAG dogeos-gnu-*.pkg.tar.*
 
 release:
-  stage: release
+  stage: build
   extends: .release
   parallel:
     matrix:
