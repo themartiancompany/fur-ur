@@ -55,7 +55,8 @@ stages:
           bash \
           git \
           jq \
-          python-docutils
+          python-docutils \
+          release-cli
 
     # Extra packages dependencies
     # archiso-encryption-git
