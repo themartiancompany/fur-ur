@@ -39,7 +39,6 @@ stages:
       - dogeos-gnu-*.pkg.tar.*
     reports:
       metrics: output/metrics.txt
-      dotenv: /build.env
   before_script:
     - >
       pacman \
@@ -109,16 +108,6 @@ stages:
         -R \
         "user:user" \
         "/home/user"
-
-    # Save variables for next stage
-    - >
-      echo \
-        "GL_DL_PRIVATE_TOKEN='${GL_DL_PRIVATE_TOKEN}'" >> \
-        "/build.env"
-       echo \
-         "BUR_GPG_KEY='${BUR_GPG_KEY}'" >> \
-         "/build.env"
-
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
   stage: build
