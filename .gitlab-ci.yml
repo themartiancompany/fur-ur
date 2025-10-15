@@ -31,9 +31,9 @@ default:
 
 stages:
   - build
-  - release
 
 .build:
+  stage: build
   artifacts:
     paths:
       - dogeos-gnu-*.pkg.tar.*
