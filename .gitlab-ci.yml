@@ -131,7 +131,7 @@ build:
       - .gitlab/ci/*
   interruptible: true
 
-release:
+release_job:
   extends: .build
     matrix:
       - BUILD_SCRIPT_ARGS: arch x86_64 ${CI_PROJECT_NAMESPACE} ${CI_PROJECT_NAME} ${CI_COMMIT_SHA}
