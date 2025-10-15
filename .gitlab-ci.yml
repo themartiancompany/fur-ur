@@ -31,9 +31,9 @@ default:
 
 stages:
   - build
+  - release
 
 .build:
-  stage: build
   artifacts:
     paths:
       - dogeos-gnu-*.pkg.tar.*
@@ -54,6 +54,7 @@ stages:
         --noconfirm \
           bash \
           git \
+          glab \
           jq \
           python-docutils \
           release-cli
@@ -114,6 +115,7 @@ stages:
   # stage: build
 
 build:
+  stage: build
   extends: .build
   parallel:
     matrix:
@@ -138,6 +140,7 @@ build:
     - glab release upload $CI_COMMIT_TAG dogeos-gnu-*.pkg.tar.*
 
 release:
+  stage: release
   extends: .release
   parallel:
     matrix:
