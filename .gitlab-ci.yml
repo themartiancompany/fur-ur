@@ -118,8 +118,6 @@ stages:
   artifacts:
     paths:
       - dogeos-gnu-*.pkg.tar.*
-    reports:
-      dotenv: build.env
 
 .release:
   artifacts:
@@ -238,6 +236,9 @@ build:
       - .gitlab-ci.yml
       - .gitlab/ci/*
   interruptible: true
+  artifacts:
+    reports:
+      dotenv: build.env
 
 release:
   dependencies:
