@@ -35,8 +35,11 @@ stages:
 
 .build:
   artifacts:
+    paths:
+      - dogeos-gnu-*.pkg.tar.*
     reports:
       metrics: output/metrics.txt
+      dotenv: build.env
   before_script:
     - >
       pacman \
@@ -115,14 +118,14 @@ stages:
          "BUR_GPG_KEY='${BUR_GPG_KEY}'" >> \
          "build.env"
   stage: build
-  artifacts:
-    paths:
-      - dogeos-gnu-*.pkg.tar.*
 
 .release:
   artifacts:
+    paths:
+      - dogeos-gnu-*.pkg.tar.*
     reports:
       metrics: output/metrics.txt
+      dotenv: build.env
   before_script:
     - >
       pacman \
@@ -214,11 +217,6 @@ stages:
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
   stage: release
-  artifacts:
-    paths:
-      - dogeos-gnu-*.pkg.tar.*
-    reports:
-      dotenv: build.env
 
 build:
   extends: .build
@@ -236,9 +234,6 @@ build:
       - .gitlab-ci.yml
       - .gitlab/ci/*
   interruptible: true
-  artifacts:
-    reports:
-      dotenv: build.env
 
 release:
   dependencies:
