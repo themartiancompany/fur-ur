@@ -108,12 +108,64 @@ stages:
         "/home/user"
   script:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
+    - echo "GL_DL_PRIVATE_TOKEN='${GL_DL_PRIVATE_TOKEN}'" >> build.env
+    - echo "BUR_GPG_KEY='${BUR_GPG_KEY}'" >> build.env
   stage: build
   artifacts:
     paths:
       - dogeos-gnu-*.pkg.tar.*
-  # tags:
-  #   - vm
+    reports:
+      dotenv: build.env
+
+.release:
+  artifacts:
+    reports:
+      metrics: output/metrics.txt
+  before_script:
+    - >
+      pacman \
+        -Sy \
+        --needed \
+        --noconfirm \
+          archlinux-keyring
+    - >  
+      pacman \
+        -Su \
+        --needed \
+        --noconfirm \
+          bash \
+          git \
+          jq \
+          python-docutils
+
+    # Extra packages dependencies
+    # archiso-encryption-git
+    - >
+      pacman \
+        -Su \
+        --needed \
+        --noconfirm \
+          asciidoctor \
+          fakeroot \
+          gnupg \
+          make \
+          shellcheck \
+          shfmt
+
+    # Save gl-dl private token in the
+    # container
+    - >
+      mkdir \
+        -p \
+        "/root/.config/gitlab.com"
+      echo \
+        "${
+  stage: build
+  artifacts:
+    paths:
+      - dogeos-gnu-*.pkg.tar.*
+    reports:
+      dotenv: build.env
 
 .release:
   artifacts:
