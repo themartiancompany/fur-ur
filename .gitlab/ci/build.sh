@@ -34,6 +34,28 @@ shopt \
   -s \
     extglob
 
+_gur_mini() {
+  local \
+    _pkg="${1}" \
+    _http \
+    _repo \
+    _url \
+    _msg=()
+  _http="https://gitlab.com"
+  _repo="${_http}/${_ns}/${_pkg}"
+  _url="${_repo}/-/archive/${_commit}/${_tarname}.tar.gz"
+  _msg=(
+    "Downloading '${_tarname}'"
+    "source tarball from"
+    "'${_ns}' namespace on"
+    "Gitlab.com."
+  )
+  echo \
+    "${_msg[*]}"
+  _gl_dl_retrieve \
+    "${_url}"
+}
+
 _fur_mini() {
   local \
     _pkg="${1}" \
@@ -106,6 +128,7 @@ _requirements() {
     recipe-get \
       "/home/user/${_pkgname}/PKGBUILD" \
       "_commit")"
+  # ohoh
   _gl_dl_mini \
     "${ns}" \
     "${_pkgname}" \
