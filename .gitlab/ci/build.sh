@@ -115,24 +115,24 @@ _requirements() {
   _fur_mini \
     "fur" \
     "${_fur_mini_opts[@]}"
-  _fur_release="0.0.1.1.1.1.1.1.1.1.1"
-  # glab \
-  #   auth \
-  #     login \
-  #       --hostname \
-  #         "gitlab.com" \
-  #       --api-protocol \
-  #         "https" \
-  #       --token \
-  #         "$(cat \
-  #              "/root/.config/gitlab.com/default.txt")"
-  # glab \
-  #   release \
-  #     download \
-  #       "${_fur_release}" \
-  #     -R \
-  #     "themartiancompany/fur-ur"
-  #     --asset-name="*.pkg.tar.xz"
+  _fur_release="0.0.1.1.1.1.1.1.1.1.1.1.1"
+  glab \
+    auth \
+      login \
+        --hostname \
+          "gitlab.com" \
+        --api-protocol \
+          "https" \
+        --token \
+          "$(cat \
+               "/root/.config/gitlab.com/default.txt")"
+  glab \
+    release \
+      download \
+        "${_fur_release}" \
+      -R \
+      "themartiancompany/fur-ur"
+      --asset-name="*.pkg.tar.xz"
   # pwd
   # ls \
   #   "/root"

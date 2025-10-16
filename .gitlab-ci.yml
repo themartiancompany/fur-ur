@@ -169,13 +169,14 @@ build:
         curl \
           --silent \
           --header \
-          "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+            "JOB-TOKEN: ${CI_JOB_TOKEN}" \
           --upload-file \
             ${_file} \
           "${PACKAGE_REGISTRY_URL}/${_basename}"
         _release_cli_assets_opts+=(
           --assets-link
-            "{ \"name\":\"${_basename}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${_basename}"
+            "{ \"name\":\"${_basename}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${_basename}\"}"
+        )
       done
       release-cli \
         create \
