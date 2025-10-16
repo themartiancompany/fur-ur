@@ -136,9 +136,11 @@ build:
       - .gitlab/ci/*
   interruptible: true
 
-.upload:
+.release:
   extends: .build
   after_script:
+    ->
+      ls 
     - >
       pwd
       ls
@@ -147,6 +149,11 @@ build:
         _basename="$( \
           basename \
             "${_file}")"
+        _msg=(
+          "Uploading '${_basename}'.")
+        )
+        echo \
+          "${_msg[*]}"
         curl \
           --silent \
           --header \
@@ -155,10 +162,6 @@ build:
             ${_file} \
           "${PACKAGE_REGISTRY_URL}/${_basename}"
       done
-
-.release:
-  extends: .upload
-  after_script:
     - >
       printf \
         "%s\n" \
