@@ -165,7 +165,7 @@ build:
       for _file in $(cat "/root/packages.txt"); do
         printf \
           "%s " \
-          "--assets-link"
+          "--assets-link" \
             "{ \"name\": \"${_basename}\", \"url\": \"${PACKAGE_REGISTRY_URL}/${_basename}\" }" >> \
           "/root/assets-links.txt"
       done
