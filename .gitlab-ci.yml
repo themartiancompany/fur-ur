@@ -140,7 +140,7 @@ build:
   extends: .build
   after_script:
     - >
-      for _file in "/root/dogeos-"*".pkg.tar"*; do
+      for _file in "dogeos-"*".pkg.tar"*; do
         _basename="$( \
           basename \
             "${_file}")"
@@ -159,7 +159,7 @@ build:
     - >
       printf \
         "%s\n" \
-        "/root/dogeos-"*".pkg.tar"* > \
+        "dogeos-"*".pkg.tar"* > \
         "/root/packages.txt"
     - >
       for _file in $(cat "/root/packages.txt"); do
