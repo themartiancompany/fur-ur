@@ -80,6 +80,8 @@ stages:
         -p \
         "/root/.config/gitlab.com"
       echo \
+        "${PACKAGE_REGISTRY_URL}"
+      echo \
         "${GL_DL_PRIVATE_TOKEN}" > \
         "/root/.config/gitlab.com/default.txt"
       echo \
