@@ -129,7 +129,9 @@ _requirements() {
   glab \
     release \
       download \
-        "${_fur_release}"
+        "${_fur_release}" \
+      -R \
+      "themartiancompany/fur-ur"
   pwd
   ls \
     "/root"
