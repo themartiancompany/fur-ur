@@ -122,7 +122,10 @@ _requirements() {
     "0.0.1.1.1.1.1.1.1.1.1" \
     "dogeos-gnu-fur-${_fur_version}-1-any.pkg.tar.xz"
   pwd
-  ls
+  ls \
+    "/root"
+  cat \
+    "/root/dogeos-gnu-fur"*".pkg.tar."*
   pacman \
     -Udd \
     "/root/dogeos-gnu-fur"*".pkg.tar."*
