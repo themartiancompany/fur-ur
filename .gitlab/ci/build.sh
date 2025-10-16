@@ -38,8 +38,8 @@ _gur_mini() {
   local \
     _ns="${1}" \
     _pkgbase="${2}" \
-    _pkg="${3}" \
-    _release="${4}" \
+    _release="${3}" \
+    _pkg="${4}" \
     _http \
     _repo \
     _url \
