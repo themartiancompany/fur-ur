@@ -132,6 +132,7 @@ _requirements() {
         "${_fur_release}" \
       -R \
       "themartiancompany/fur-ur"
+      --asset-name="*.pkg.tar.xz"
   pwd
   ls \
     "/root"
