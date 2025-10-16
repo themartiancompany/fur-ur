@@ -45,8 +45,8 @@ _gur_mini() {
     _url \
     _msg=()
   _http="https://gitlab.com"
-  _repo="${_http}/${_ns}/${_pkg}"
-  _url="${_https}${_ns}/${_pkg}-ur/-/releases/${_release}/downloads/${_pkg}"
+  _repo="${_http}/${_ns}/${_pkg}-ur"
+  _url="${_repo}/-/releases/${_release}/downloads/${_pkg}"
   _msg=(
     "Downloading '${_pkg}'"
     "binary CI release"
