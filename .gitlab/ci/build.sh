@@ -115,7 +115,7 @@ _requirements() {
   _fur_mini \
     "fur" \
     "${_fur_mini_opts[@]}"
-  _fur_version="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
+  _fur_pkgver="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
   _gur_mini \
     "${ns}" \
     "fur" \
