@@ -263,6 +263,12 @@ _gl_dl_retrieve() {
     -o 
       "${_output_file}"
   )
+  _msg=(
+    "Downloading '${_url}'."
+  )
+  echo \
+    "${_msg[*]}"
+
   curl \
     "${_curl_opts[@]}" \
     "${_url}"
