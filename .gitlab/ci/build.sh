@@ -36,18 +36,20 @@ shopt \
 
 _gur_mini() {
   local \
-    _pkg="${1}" \
+    _pkgbase="${1}" \
+    _pkg="${2}" \
+    _release="${3}" \
     _http \
     _repo \
     _url \
     _msg=()
   _http="https://gitlab.com"
   _repo="${_http}/${_ns}/${_pkg}"
-  _url="${_repo}/-/archive/${_commit}/${_tarname}.tar.gz"
+  _url="${_https}${_ns}/${_pkg}-ur/-/releases/${_release}/downloads/${_pkg}"
   _msg=(
-    "Downloading '${_tarname}'"
-    "source tarball from"
-    "'${_ns}' namespace on"
+    "Downloading '${_pkg}'"
+    "binary CI release"
+    "from '${_ns}' namespace"
     "Gitlab.com."
   )
   echo \
@@ -112,8 +114,11 @@ _requirements() {
   _fur_mini \
     "fur" \
     "${_fur_mini_opts[@]}"
-  _gl_dl_retrieve \
-    "https://gitlab.com/themartiancompany/fur-ur/-/releases/0.0.1.1.1.1.1.1.1.1.1/downloads/dogeos-gnu-fur-1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1-1-any.pkg.tar.xz.sig"
+  _fur_version="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
+  _gur_mini \
+    "fur" \
+    "0.0.1.1.1.1.1.1.1.1.1" \
+    "dogeos-gnu-fur-${_fur_version}-1-any.pkg.tar.xz"
   pacman \
     -Udd \
     "dogeos-gnu-fur"*".pkg.tar."*
