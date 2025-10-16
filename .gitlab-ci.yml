@@ -157,12 +157,23 @@ build:
   extends: .upload
   after_script:
     - >
-      _assets=(
-        "/root/dogeos-"*".pkg.tar"*
-      )
-      _release_cli_assets_opts=(
-      ) && \
-      for _file in "${_assets[@]}"; do
+      printf \
+        "%s\n" \
+        "/root/dogeos-"*".pkg.tar"* > \
+        "/root/packages.txt"
+    - >
+      for _file in $(cat "/root/packages.txt"); do
+        printf \
+          "%s " \
+          "--assets-link"
+            "{ \"name\":
+                 \"${_basename}\",
+               \"url\":
+                 \"${PACKAGE_REGISTRY_URL}/${_basename}\" }" >> \
+          "/root/assets-links.txt"
+      done
+    - >
+      for _file in $(cat "/root/packages.txt"); do
         _basename="$( \
           basename \
             "${_file}")"
@@ -173,10 +184,6 @@ build:
           --upload-file \
             ${_file} \
           "${PACKAGE_REGISTRY_URL}/${_basename}"
-        _release_cli_assets_opts+=(
-          --assets-link
-            "{ \"name\":\"${_basename}\",\"url\":\"${PACKAGE_REGISTRY_URL}/${_basename}\"}"
-        )
       done
       release-cli \
         create \
@@ -184,7 +191,8 @@ build:
           "Release: ${CI_COMMIT_TAG}" \
         --tag-name \
           "${CI_COMMIT_TAG}" \
-       "_release_cli_assets_opts[@]}"
+       "$(cat \
+            "/root/assets-links.txt")"
 
 release:
   stage: build
