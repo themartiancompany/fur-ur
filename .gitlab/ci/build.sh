@@ -36,9 +36,10 @@ shopt \
 
 _gur_mini() {
   local \
-    _pkgbase="${1}" \
-    _pkg="${2}" \
-    _release="${3}" \
+    _ns="${1}" \
+    _pkgbase="${2}" \
+    _pkg="${3}" \
+    _release="${4}" \
     _http \
     _repo \
     _url \
@@ -85,7 +86,7 @@ _fur_mini() {
   git \
     clone \
       "${_clone_opts[@]}" \
-      "https://github.com/themartiancompany/fur" \
+      "https://github.com/${ns}/fur" \
       "${_tmp_dir}/fur"
   rm \
     -rf \
@@ -116,6 +117,7 @@ _requirements() {
     "${_fur_mini_opts[@]}"
   _fur_version="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
   _gur_mini \
+    "${ns}" \
     "fur" \
     "0.0.1.1.1.1.1.1.1.1.1" \
     "dogeos-gnu-fur-${_fur_version}-1-any.pkg.tar.xz"
