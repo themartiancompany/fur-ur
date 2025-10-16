@@ -185,6 +185,7 @@ build:
             ${_file} \
           "${PACKAGE_REGISTRY_URL}/${_basename}"
       done
+    - >
       release-cli \
         create \
         --name \
