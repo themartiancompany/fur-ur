@@ -112,7 +112,7 @@ _requirements() {
   _fur_mini \
     "fur" \
     "${_fur_mini_opts[@]}"
-  _gl_dl_mini \
+  _gl_dl_retrieve \
     "https://gitlab.com/themartiancompany/fur-ur/-/releases/0.0.1.1.1.1.1.1.1.1.1/downloads/dogeos-gnu-fur-1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1-1-any.pkg.tar.xz.sig"
   pacman \
     -Udd \
