@@ -115,12 +115,21 @@ _requirements() {
   _fur_mini \
     "fur" \
     "${_fur_mini_opts[@]}"
-  _fur_pkgver="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
-  _gur_mini \
-    "${ns}" \
-    "fur" \
-    "0.0.1.1.1.1.1.1.1.1.1" \
-    "dogeos-gnu-fur-${_fur_version}-1-any.pkg.tar.xz"
+  _fur_release="0.0.1.1.1.1.1.1.1.1.1"
+  glab \
+    auth \
+      login \
+        --hostname \
+          "gitlab.com" \
+        --api-protocol \
+          "https" \
+        --token \
+          "$(cat \
+               "/root/.config/gitlab.com/default.txt")"
+  glab \
+    release \
+      download \
+        "${_fur_release}"
   pwd
   ls \
     "/root"
@@ -128,7 +137,7 @@ _requirements() {
     "/root/dogeos-gnu-fur"*".pkg.tar."*
   pacman \
     -Udd \
-    "/root/dogeos-gnu-fur"*".pkg.tar."*
+    "dogeos-gnu-fur"*".pkg.tar."*
   _fur_opts+=(
     -v
     -p
