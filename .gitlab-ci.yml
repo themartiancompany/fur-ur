@@ -161,7 +161,7 @@ build:
         "/root/dogeos-"*".pkg.tar"*
       )
       _release_cli_assets_opts=(
-      )
+      ) && \
       for _file in "${_assets[@]}"; do
         _basename="$( \
           basename \
