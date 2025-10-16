@@ -166,10 +166,7 @@ build:
         printf \
           "%s " \
           "--assets-link"
-            "{ \"name\":
-                 \"${_basename}\",
-               \"url\":
-                 \"${PACKAGE_REGISTRY_URL}/${_basename}\" }" >> \
+            "{ \"name\": \"${_basename}\", \"url\": \"${PACKAGE_REGISTRY_URL}/${_basename}\" }" >> \
           "/root/assets-links.txt"
       done
     - >
