@@ -143,7 +143,7 @@ build:
               "https" \
             --token \
               "$(cat \
-                   "${HOME}/.config/gitlab.com/default.txt")"
+                   "/root/.config/gitlab.com/default.txt")"
     - >
       glab \
         release \
