@@ -125,7 +125,7 @@ _requirements() {
   ls
   pacman \
     -Udd \
-    "dogeos-gnu-fur"*".pkg.tar."*
+    "/root/dogeos-gnu-fur"*".pkg.tar."*
   _fur_opts+=(
     -v
     -p
