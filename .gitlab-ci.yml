@@ -140,6 +140,9 @@ build:
   extends: .build
   after_script:
     - >
+      pwd
+      ls
+      ls /root
       for _file in "dogeos-"*".pkg.tar"*; do
         _basename="$( \
           basename \
