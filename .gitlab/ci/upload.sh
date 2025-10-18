@@ -98,7 +98,7 @@ _upload() {
       "${_url}"
     _assets_links+=(
       --asset-link
-      "'{ \"name\": \"$(pwd)/${_file}\", \"url\": \"${package_registry_url}/${_file}\" }'"
+      "'{ \"name\": \"$(pwd)/${_file}\", \"url\": \"${_url}\" }'"
     )
   done
   _release_cli_create_opts+=(
