@@ -126,10 +126,7 @@ _upload() {
     --debug \
     create \
     "${_release_cli_create_opts[@]}" \
-    --assets-link=$( \
-      printf \
-        "'%s'" \
-        "${_assets_link}")
+    --assets-link="${_assets_link}"
 }
 
 readonly \
