@@ -38,11 +38,6 @@ variables:
 
 .build:
   stage: build
-  artifacts:
-    # paths:
-    #   - dogeos-gnu-*.pkg.tar.*
-    reports:
-      metrics: output/metrics.txt
   before_script:
     - >
       pacman-key \
@@ -122,6 +117,11 @@ variables:
     - ./.gitlab/ci/build.sh ${BUILD_SCRIPT_ARGS}
 
 build:
+  artifacts:
+    paths:
+      - dogeos-gnu-*.pkg.tar.*
+    reports:
+      metrics: output/metrics.txt
   extends: .build
   parallel:
     matrix:
@@ -144,6 +144,9 @@ build:
     - ./.gitlab/ci/upload.sh ${BUILD_SCRIPT_ARGS}
 
 release:
+  artifacts:
+    reports:
+      metrics: output/metrics.txt
   stage: build
   extends: .release
   parallel:
