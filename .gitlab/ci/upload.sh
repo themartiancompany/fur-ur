@@ -118,7 +118,7 @@ _upload() {
     "Running 'release-cli'"
     "with options"
     "create"
-    "'${_release_cli_create_opts[*]} ${_assets_link}'"
+    "'${_release_cli_create_opts[*]} --assets-link=${_assets_link}'."
   )
   echo \
     "${_msg[*]}"
