@@ -56,7 +56,7 @@ _pkg=fur
 pkgname="${_pkg}"
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
 _commit="7abf8e2cd7c5a447c8bfdfd7e61e6537a56b2480"
-pkgrel=2
+pkgrel=3
 _pkgdesc=(
   "Fallback Ur."
 )
