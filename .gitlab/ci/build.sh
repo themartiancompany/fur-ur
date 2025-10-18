@@ -79,6 +79,14 @@ _gur_mini() {
     _gl_dl_retrieve \
       "${_url}"
   done
+  for _pkg in "${HOME}/"*".pkg.tar.xz.sig"; do
+    gpg \
+      --verify \
+        "${_file}"
+  done
+  rm \
+    -rf \
+    "${HOME}/"*".pkg.tar.xz.sig"
   pacman \
     -Udd \
     --noconfirm \
@@ -114,10 +122,13 @@ _fur_mini() {
       "${_clone_opts[@]}" \
       "https://github.com/themartiancompany/fur" \
       "${_tmp_dir}/fur"
+  rm \
+    -rf \
+    "${_tmp_dir}/fur/${_platform}/"*"/"*".pkg.tar.xz.sig"
   pacman \
     -Udd \
     --noconfirm \
-    "${_tmp_dir}/fur/${_platform}/any/"*".pkg.tar.xz"
+    "${_tmp_dir}/fur/${_platform}/"*"/"*".pkg.tar.xz"
   rm \
     -rf \
     "${_tmp_dir}/fur"
