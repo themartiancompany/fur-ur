@@ -99,17 +99,15 @@ _upload() {
       "${_url}"
     _asset_link="{$( \
       printf \
-        '"name": "%s", "url":"%s"' \
-        "$(pwd)/${_file}" \
-        "${_url}")}"
+      '"name": "'$(pwd)/${_file}'", "url":"'${_url}'"}')"
     _assets_links_json+=(
       "${_asset_link}"
     )
   done
-  _assets_link="[$( \
+  _assets_link="'[$( \
     printf \
       '%s,' \
-      "${_assets_links_json[@]}")]"
+      "${_assets_links_json[@]}")]'"
   _release_cli_create_opts+=(
     --name
       "Release: ${tag}"
@@ -120,10 +118,7 @@ _upload() {
     "Running 'release-cli'"
     "with options"
     "create"
-    "'${_release_cli_create_opts[*]} --assets-link=[$( \
-    printf \
-      '%s,' \
-      "${_assets_links_json[@]}")]'."
+    "'${_release_cli_create_opts[*]} ${_assets_link}"
   )
   echo \
     "${_msg[*]}"
@@ -131,10 +126,7 @@ _upload() {
     --debug \
     create \
     "${_release_cli_create_opts[@]}" \
-    --assets-link='['"$( \
-    printf \
-      '%s,' \
-      "${_assets_links_json[@]}")"']'
+    --assets-link="${_assets_link}"
 }
 
 readonly \
