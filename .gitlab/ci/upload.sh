@@ -116,7 +116,7 @@ _upload() {
   echo \
     "${_msg[*]}"
   release-cli \
-    --verbose \
+    --debug \
     create \
     "${_release_cli_create_opts[@]}"
 }
