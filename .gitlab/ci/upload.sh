@@ -46,6 +46,8 @@ _upload() {
     _msg=(
       "Uploading '${_file}'."
     )
+    echo \
+      "${_msg[*]}"
     curl \
       --silent \
       --header \
