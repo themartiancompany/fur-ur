@@ -96,20 +96,23 @@ _upload() {
     _gl_dl_upload \
       "$(pwd)/${_file}" \
       "${_url}"
-    _assets_links+=(
-      '{"name": "'$(pwd)/${_file}'", "url": "'${_url}'"}'
+    _assets_links_json+=(
+      '{'$(printf \
+        '"%s":"%s"' \
+        "$(pwd)/${_file}" \
+        "${_url}")'}'
     )
   done
-  _assets_link="--assets-link='[$( \
+  _assets_link='['$( \
     printf \
       '%s,' \
-      "${_assets_links[@]}")]'"
+      "${_assets_links_json[@]}")']'
   _release_cli_create_opts+=(
     --name
       "Release: ${tag}"
     --tag-name
       "${tag}"
-    "${_assets_link}"
+    --assets-link="'${_assets_link}'"
   )
   _msg=(
     "Running 'release-cli'"
