@@ -37,9 +37,8 @@ shopt \
 _gur_mini() {
   local \
     _ns="${1}" \
-    _pkgbase="${2}" \
+    _pkg="${2}" \
     _release="${3}" \
-    _pkg="${4}" \
     _api \
     _url \
     _msg=()
@@ -51,8 +50,15 @@ _gur_mini() {
   )
   echo \
     "${_msg[*]}"
+  _gl_dl_retrieve \
+    "https://gitlab.com/api/v4/projects/${_ns}%2F${_pkg}-ur"
+  _project_id="$( \
+    cat \
+      "${_ns}%2F${_pkg}-ur" | \
+      jq \
+        '.id')"
   _api="https://gitlab.com/api/v4"
-  _url="${_api}/projects/${project_id}/releases"
+  _url="${_api}/projects/${_project_id}/releases"
   _gl_dl_retrieve \
     "${_url}"
   _urls=( $( \
@@ -151,6 +157,10 @@ _requirements() {
     recipe-get \
       "/home/user/${_pkgname}/PKGBUILD" \
       "_commit")"
+  _gur_mini \
+    "${ns}" \
+    "fur" \
+    "1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1-2"
   # ohoh
   _gl_dl_mini \
     "${ns}" \
