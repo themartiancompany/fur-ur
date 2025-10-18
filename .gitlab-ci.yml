@@ -39,8 +39,8 @@ variables:
 .build:
   stage: build
   artifacts:
-    paths:
-      - dogeos-gnu-*.pkg.tar.*
+    # paths:
+    #   - dogeos-gnu-*.pkg.tar.*
     reports:
       metrics: output/metrics.txt
   before_script:
@@ -152,7 +152,4 @@ release:
   rules:
     - if:
         $CI_COMMIT_TAG
-  # release:
-  #   tag_name: $CI_COMMIT_TAG
-  #   description: $CI_COMMIT_TAG
   interruptible: true
