@@ -137,8 +137,6 @@ _requirements() {
     "${ns}" \
     "${_pkgname}" \
     "${_commit}"
-  cat \
-    "${HOME}/${_pkgname}-${_commit}.tar.gz"
   mv \
     "${HOME}/${_pkgname}-${_commit}.tar.gz" \
     "/home/user/${_pkgname}"
