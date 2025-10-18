@@ -301,11 +301,19 @@ readonly \
   platform="${1}" \
   arch="${2}" \
   ns="${3}" \
-  pkg="${4}" \
-  commit="${5}" \
-  tag="${6}" \
+  pkg="${4}"
+if (( 4 < "${#}" )); then
+  commit="${5}"
+fi
+if (( 5 < "${#}" )); then
+  tag="${6}"
+fi
+if (( 6 < "${#}" )); then
   ci_job_token="${7}"
+fi
+if (( 7 < "${#}" )); then
   package_registry_url="${8}"
+fi
 
 _requirements
 _build
