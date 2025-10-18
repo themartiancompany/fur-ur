@@ -302,7 +302,10 @@ readonly \
   arch="${2}" \
   ns="${3}" \
   pkg="${4}" \
-  commit="${5}"
+  commit="${5}" \
+  tag="${6}" \
+  ci_job_token="${7}"
+  package_registry_url="${8}"
 
 _requirements
 _build

@@ -71,9 +71,10 @@ readonly \
   arch="${2}" \
   ns="${3}" \
   pkg="${4}" \
-  tag="${5}" \
-  ci_job_token="${6}" \
-  package_registry_url="${7}"
+  commit="${5}" \
+  tag="${6}" \
+  ci_job_token="${7}"
+  package_registry_url="${8}"
 
 _upload
 
