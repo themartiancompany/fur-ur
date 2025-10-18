@@ -85,12 +85,14 @@ _upload() {
     _assets_links=() \
     _curl_opts=() \
     _release_cli_create_opts=() \
-    _msg=()
+    _msg=() \
+    _pkgname
+  _pkgname="${pkg%-ur}"
   pwd
   ls
   for _file \
     in "dogeos-"*".pkg.tar."*; do
-    _url="${package_registry_url}/packages/generic/${pkg}/${_tag}/${_file}"
+    _url="${package_registry_url}/${_pkgname}/${_tag}/${_file}"
     _gl_dl_upload \
       "$(pwd)/${_file}" \
       "${_url}"
