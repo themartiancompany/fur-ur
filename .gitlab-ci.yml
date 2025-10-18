@@ -45,6 +45,9 @@ variables:
       metrics: output/metrics.txt
   before_script:
     - >
+      pacman-key \
+        --init
+    - >
       pacman \
         -Sy \
         --needed \
@@ -64,7 +67,6 @@ variables:
           release-cli
 
     # Extra packages dependencies
-    # archiso-encryption-git
     - >
       pacman \
         -Su \
