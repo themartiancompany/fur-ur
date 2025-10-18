@@ -58,7 +58,6 @@ variables:
           git \
           glab \
           jq \
-          python-docutils \
           release-cli
 
     # Extra packages dependencies
