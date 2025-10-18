@@ -37,24 +37,31 @@ shopt \
 _upload() {
   local \
     _assets_links=() \
+    _curl_opts=() \
     _release_cli_create_opts=() \
     _msg=()
   pwd
   ls
   for _file \
     in "dogeos-"*".pkg.tar."*; do
+    _curl_opts=(
+      --header
+        "JOB-TOKEN: ${ci_job_token}"
+      --upload-file
+        "$(pwd)/${_file}"
+    )
+    _url="${package_registry_url}/${_file}"
     _msg=(
-      "Uploading '${_file}'."
+      "Uploading '${_file}'"
+      "at url '${_url}'"
+      "using cURL with options"
+      "'${_curl_opts[*]}'."
     )
     echo \
       "${_msg[*]}"
     curl \
-      --silent \
-      --header \
-        "JOB-TOKEN: ${ci_job_token}" \
-      --upload-file \
-        "$(pwd)/${_file}" \
-      "${package_registry_url}/${_file}"
+      "${_curl_opts[@]}" \
+      "${_url}"
     _assets_links+=(
       --asset-link
       "'{ \"name\": \"$(pwd)/${_file}\", \"url\": \"${package_registry_url}/${_file}\" }'"
