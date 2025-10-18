@@ -55,6 +55,17 @@ _gur_mini() {
   )
   echo \
     "${_msg[*]}"
+  _api="https://gitlab.com/api/v4"
+  _url="${_api}/projects/${_project_id}/releases"
+  _gl_dl_opts+=(
+    -o
+      "${_cache_dir}/releases.json"
+  )
+  gl-dl \
+    "${_gl_dl_opts[@]}" \
+    "${_url}"
+  _gl_dl_retrieve \
+  _url="${_api}/projects/${_project_id}/releases"
   _gl_dl_retrieve \
     "${_url}"
 }
@@ -275,18 +286,19 @@ readonly \
   platform="${1}" \
   arch="${2}" \
   ns="${3}" \
-  pkg="${4}"
-if (( 4 < "${#}" )); then
-  commit="${5}"
-fi
+  pkg="${4}" \
+  project_id="${5}"
 if (( 5 < "${#}" )); then
-  tag="${6}"
+  commit="${6}"
 fi
 if (( 6 < "${#}" )); then
-  ci_job_token="${7}"
+  tag="${7}"
 fi
 if (( 7 < "${#}" )); then
-  package_registry_url="${8}"
+  ci_job_token="${8}"
+fi
+if (( 8 < "${#}" )); then
+  package_registry_url="${9}"
 fi
 
 _requirements
