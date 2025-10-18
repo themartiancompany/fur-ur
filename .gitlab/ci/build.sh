@@ -157,10 +157,10 @@ _requirements() {
     recipe-get \
       "/home/user/${_pkgname}/PKGBUILD" \
       "_commit")"
-  _gur_mini \
-    "${ns}" \
-    "fur" \
-    "1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1-2"
+  # _gur_mini \
+  #   "${ns}" \
+  #   "fur" \
+  #   "1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1-2"
   # ohoh
   _gl_dl_mini \
     "${ns}" \
