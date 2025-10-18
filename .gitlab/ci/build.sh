@@ -295,7 +295,8 @@ readonly \
   platform="${1}" \
   arch="${2}" \
   ns="${3}" \
-  pkg="${4}"
+  pkg="${4}" \
+  commit="${5}"
 
 _requirements
 _build

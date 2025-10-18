@@ -139,67 +139,7 @@ build:
 .release:
   extends: .build
   after_script:
-    ->
-      ls 
-    - >
-      pwd
-      ls
-      ls /root
-      for _file in "dogeos-"*".pkg.tar"*; do
-        _basename="$( \
-          basename \
-            "${_file}")"
-        _msg=(
-          "Uploading '${_basename}'.")
-        )
-        echo \
-          "${_msg[*]}"
-        curl \
-          --silent \
-          --header \
-          "JOB-TOKEN: ${CI_JOB_TOKEN}" \
-          --upload-file \
-            ${_file} \
-          "${PACKAGE_REGISTRY_URL}/${_basename}"
-      done
-    - >
-      printf \
-        "%s\n" \
-        "dogeos-"*".pkg.tar"* > \
-        "/root/packages.txt"
-    - >
-      for _file in $(cat "/root/packages.txt"); do
-        _basename="$( \
-          basename \
-            "${_file}")"
-        printf \
-          "%s " \
-          "--assets-link" \
-            "'{ \"name\": \"${_basename}\", \"url\": \"${PACKAGE_REGISTRY_URL}/${_basename}\" }'" >> \
-          "/root/assets-links.txt"
-      done
-    - >
-      for _file in $(cat "/root/packages.txt"); do
-        _basename="$( \
-          basename \
-            "${_file}")"
-        curl \
-          --silent \
-          --header \
-            "JOB-TOKEN: ${CI_JOB_TOKEN}" \
-          --upload-file \
-            ${_file} \
-          "${PACKAGE_REGISTRY_URL}/${_basename}"
-      done
-    - >
-      release-cli \
-        create \
-        --name \
-          "Release: ${CI_COMMIT_TAG}" \
-        --tag-name \
-          "${CI_COMMIT_TAG}" \
-       "$(cat \
-            "/root/assets-links.txt")"
+    - ./.gitlab/ci/upload.sh ${UPLOAD_SCRIPT_ARGS}
 
 release:
   stage: build
@@ -207,10 +147,11 @@ release:
   parallel:
     matrix:
       - BUILD_SCRIPT_ARGS: arch x86_64 ${CI_PROJECT_NAMESPACE} ${CI_PROJECT_NAME} ${CI_COMMIT_SHA}
+      - UPLOAD_SCRIPT_ARGS: arch x86_64 ${CI_PROJECT_NAMESPACE} ${CI_PROJECT_NAME} ${CI_COMMIT_TAG} ${CI_JOB_TOKEN} ${PACKAGE_REGISTRY_URL}
   rules:
     - if:
         $CI_COMMIT_TAG
-  # release:
-  #   tag_name: $CI_COMMIT_TAG
-  #   description: $CI_COMMIT_TAG
+  release:
+    tag_name: $CI_COMMIT_TAG
+    description: $CI_COMMIT_TAG
   interruptible: true
