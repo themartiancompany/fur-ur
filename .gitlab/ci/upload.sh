@@ -97,7 +97,7 @@ _upload() {
       "$(pwd)/${_file}" \
       "${_url}"
     _assets_links+=(
-      '{ \"name\": \"'$(pwd)/${_file}'\", \"url\": \"'${_url}'\" }'
+      '{ "name": "'$(pwd)/${_file}'", "url": "'${_url}'" }'
     )
   done
   _assets_link="--assets-link='[ $( \
