@@ -51,7 +51,7 @@ _upload() {
       --header \
         "JOB-TOKEN: ${ci_job_token}" \
       --upload-file \
-        ${_file} \
+        "$(pwd)/${_file}" \
       "${package_registry_url}/${_file}"
     _assets_links+=(
       --asset-link
