@@ -102,7 +102,7 @@ _upload() {
   done
   _assets_link="--assets-link='[ $( \
     printf \
-      '%s, '
+      '%s, ' \
       "${_assets_links[@]}") ]'"
   _release_cli_create_opts+=(
     --name
