@@ -99,7 +99,7 @@ _upload() {
       "${_url}"
     _assets_links_json+=(
       '{'$(printf \
-        '"%s":"%s"' \
+        '"name": "%s", "url":"%s"' \
         "$(pwd)/${_file}" \
         "${_url}")'}'
     )
