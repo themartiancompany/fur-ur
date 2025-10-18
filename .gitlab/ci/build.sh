@@ -40,13 +40,9 @@ _gur_mini() {
     _pkgbase="${2}" \
     _release="${3}" \
     _pkg="${4}" \
-    _http \
-    _repo \
+    _api \
     _url \
     _msg=()
-  _http="https://gitlab.com"
-  _repo="${_http}/${_ns}/${_pkgbase}-ur"
-  _url="${_repo}/-/releases/${_release}/downloads/${_pkg}"
   _msg=(
     "Downloading '${_pkg}'"
     "binary CI release"
@@ -56,18 +52,16 @@ _gur_mini() {
   echo \
     "${_msg[*]}"
   _api="https://gitlab.com/api/v4"
-  _url="${_api}/projects/${_project_id}/releases"
-  _gl_dl_opts+=(
-    -o
-      "${_cache_dir}/releases.json"
-  )
-  gl-dl \
-    "${_gl_dl_opts[@]}" \
-    "${_url}"
-  _gl_dl_retrieve \
-  _url="${_api}/projects/${_project_id}/releases"
+  _url="${_api}/projects/${project_id}/releases"
   _gl_dl_retrieve \
     "${_url}"
+  cat \
+    "releases" | \
+    jq \
+      '.[0].assets.links.[]' | \
+      jq \
+        --raw-output \
+        '.direct_asset_url')
 }
 
 _fur_mini() {

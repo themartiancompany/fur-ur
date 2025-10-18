@@ -71,7 +71,6 @@ variables:
           fakeroot \
           gnupg \
           make \
-          shellcheck \
           shfmt
 
     # Save gl-dl private token in the
