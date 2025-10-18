@@ -41,7 +41,10 @@ _upload() {
   pwd
   ls
   for _file \
-    in "dogeos-gnu"*".pkg.tar."*; do
+    in "dogeos-"*".pkg.tar."*; do
+    _msg=(
+      "Uploading '${_file}'."
+    )
     curl \
       --silent \
       --header \
@@ -51,17 +54,18 @@ _upload() {
       "${package_registry_url}/${_file}"
     _assets_links+=(
       --asset-link
-        "'{ \"name\": \"${_file}\", \"url\": \"${package_registry_url}/${_file}\" }'"
+      "'{ \"name\": \"$(pwd)/${_file}\", \"url\": \"${package_registry_url}/${_file}\" }'"
     )
   done
   _release_cli_create_opts+=(
     --name
       "Release: ${tag}"
-    --tag-name \
+    --tag-name
       "${tag}"
     "${_assets_links[@]}"
   )
   release-cli \
+    --verbose \
     create \
     "${_release_cli_create_opts[@]}"
 }
