@@ -268,7 +268,6 @@ _gl_dl_retrieve() {
   )
   echo \
     "${_msg[*]}"
-
   curl \
     "${_curl_opts[@]}" \
     "${_url}"
