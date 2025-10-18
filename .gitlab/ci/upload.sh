@@ -104,10 +104,11 @@ _upload() {
       "${_asset_link}"
     )
   done
-  _assets_link="[$( \
+  _assets_link="$( \
     printf \
       '%s,' \
-      "${_assets_links_json[@]}")]"
+      "${_assets_links_json[@]}")"
+  _assets_link="[${_assets_link::-1}]"
   _release_cli_create_opts+=(
     --name
       "Release: ${tag}"
