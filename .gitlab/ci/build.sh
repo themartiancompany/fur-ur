@@ -41,7 +41,8 @@ _gur_mini() {
     _release="${3}" \
     _api \
     _url \
-    _msg=()
+    _msg=() \
+    _sig
   _msg=(
     "Downloading '${_pkg}'"
     "binary CI release"
@@ -79,10 +80,10 @@ _gur_mini() {
     _gl_dl_retrieve \
       "${_url}"
   done
-  for _pkg in "${HOME}/"*".pkg.tar.xz.sig"; do
+  for _sig in "${HOME}/"*".pkg.tar.xz.sig"; do
     gpg \
       --verify \
-        "${_file}"
+        "${_sig}"
   done
   rm \
     -rf \
