@@ -82,7 +82,8 @@ _gl_dl_upload() {
 
 _upload() {
   local \
-    _assets_links=() \
+    _assets_links_json=() \
+    _assets_link \
     _curl_opts=() \
     _release_cli_create_opts=() \
     _msg=() \
