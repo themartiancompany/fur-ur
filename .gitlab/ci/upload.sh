@@ -37,7 +37,8 @@ shopt \
 _upload() {
   local \
     _assets_links=() \
-    _release_cli_create_opts=()
+    _release_cli_create_opts=() \
+    _msg=()
   pwd
   ls
   for _file \
@@ -64,6 +65,13 @@ _upload() {
       "${tag}"
     "${_assets_links[@]}"
   )
+  _msg=(
+    "Running 'release-cli'"
+    "with options"
+    "create ${_release_cli_create_opts[@]}'."
+  )
+  echo \
+    "${_msg[*]}"
   release-cli \
     --verbose \
     create \
