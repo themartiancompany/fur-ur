@@ -55,13 +55,27 @@ _gur_mini() {
   _url="${_api}/projects/${project_id}/releases"
   _gl_dl_retrieve \
     "${_url}"
-  cat \
-    "releases" | \
-    jq \
-      '.[0].assets.links.[]' | \
+  _urls=( $( \
+    cat \
+      "releases" | \
       jq \
-        --raw-output \
-        '.direct_asset_url')
+        '.[0].assets.links.[]' | \
+        jq \
+          --raw-output \
+          '.direct_asset_url')
+  )
+  for _url in "${_urls[@]}"; do
+    _file="$( \
+      basename \
+        "${_url}")"
+    _output_file="$(pwd)/${_file}"
+    _gl_dl_retrieve \
+      "${_url}"
+  done
+  pacman \
+    -Udd \
+    --noconfirm \
+    *".pkg.tar."*
 }
 
 _fur_mini() {
