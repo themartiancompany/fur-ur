@@ -97,17 +97,19 @@ _upload() {
     _gl_dl_upload \
       "$(pwd)/${_file}" \
       "${_url}"
+    _asset_link="{$( \
+      printf \
+        '"name": "%s", "url":"%s"' \
+        "$(pwd)/${_file}" \
+        "${_url}")}"
     _assets_links_json+=(
-      "{$(printf \
-             '"name": "%s", "url":"%s"' \
-             "$(pwd)/${_file}" \
-             "${_url}")}"
+      "${_asset_link}"
     )
   done
-  _assets_link='['$( \
+  _assets_link="[$( \
     printf \
       '%s,' \
-      "${_assets_links_json[@]}")']'
+      "${_assets_links_json[@]}")]"
   _release_cli_create_opts+=(
     --name
       "Release: ${tag}"
@@ -129,10 +131,10 @@ _upload() {
     --debug \
     create \
     "${_release_cli_create_opts[@]}" \
-    --assets-link='['$( \
+    --assets-link="$( \
     printf \
       '%s,' \
-      "${_assets_links_json[@]}")']'
+      "${_assets_links_json[@]}")"
 }
 
 readonly \
