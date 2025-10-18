@@ -91,7 +91,7 @@ _gur_mini() {
   pacman \
     -Udd \
     --noconfirm \
-    "${HOME}/${_pkgname}-"*".pkg.tar.xz"
+    "${HOME}/"*".pkg.tar.xz"
 }
 
 _fur_mini() {
