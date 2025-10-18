@@ -92,7 +92,7 @@ _upload() {
   ls
   for _file \
     in "dogeos-"*".pkg.tar."*; do
-    _url="${package_registry_url}/${_pkgname}/${_tag}/${_file}"
+    _url="${package_registry_url}/${_pkgname}/${tag}/${_file}"
     _gl_dl_upload \
       "$(pwd)/${_file}" \
       "${_url}"
