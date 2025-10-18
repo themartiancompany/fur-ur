@@ -82,7 +82,7 @@ _gur_mini() {
   pacman \
     -Udd \
     --noconfirm \
-    "${HOME}/${_pkgname}/"*".pkg.tar."*
+    "${HOME}/${_pkgname}-"*".pkg.tar.xz"
 }
 
 _fur_mini() {
@@ -114,13 +114,10 @@ _fur_mini() {
       "${_clone_opts[@]}" \
       "https://github.com/themartiancompany/fur" \
       "${_tmp_dir}/fur"
-  rm \
-    -rf \
-    "${_tmp_dir}/fur/${_platform}/any/"*".pkg.tar."*".sig"
   pacman \
     -Udd \
     --noconfirm \
-    "${_tmp_dir}/fur/${_platform}/any/"*".pkg.tar."*
+    "${_tmp_dir}/fur/${_platform}/any/"*".pkg.tar.xz"
   rm \
     -rf \
     "${_tmp_dir}/fur"
