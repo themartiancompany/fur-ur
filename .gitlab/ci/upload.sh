@@ -34,6 +34,52 @@ shopt \
   -s \
     extglob
 
+_gl_dl_upload() {
+  local \
+    _input_file="${1}" \
+    _url="${2}" \
+    _token_private \
+    _token \
+    _curl_opts=() \
+    _msg=()
+  _token_private="${HOME}/.config/gitlab.com/default.txt"
+  if [[ ! -e "${_token_private}" ]]; then
+    _msg=(
+      "Missing private token at"
+      "'${_token_private}'."
+    )
+    echo \
+      "${_msg[*]}"
+    _msg=(
+      "Set the 'GL_DL_PRIVATE_TOKEN'"
+      "variable in your Gitlab.com" \
+      "CI namespace configuration."
+    )
+    echo \
+      "${_msg[*]}"
+  fi
+  _token="PRIVATE-TOKEN: $( \
+    cat \
+      "${_token_private}")"
+  _curl_opts+=(
+    --silent
+    -L
+    --header
+      "${_token}"
+    --upload-file 
+      "${_input_file}"
+  )
+  _msg=(
+    "Uploading '${_input_file}'"
+    "at URL '${_url}'."
+  )
+  echo \
+    "${_msg[*]}"
+  curl \
+    "${_curl_opts[@]}" \
+    "${_url}"
+}
+
 _upload() {
   local \
     _assets_links=() \
@@ -44,24 +90,9 @@ _upload() {
   ls
   for _file \
     in "dogeos-"*".pkg.tar."*; do
-    _curl_opts=(
-      # --silent
-      --header
-        "JOB-TOKEN: ${ci_job_token}"
-      --upload-file
-        "$(pwd)/${_file}"
-    )
     _url="${package_registry_url}/${_file}"
-    _msg=(
-      "Uploading '${_file}'"
-      "at url '${_url}'"
-      "using cURL with options"
-      "'${_curl_opts[*]}'."
-    )
-    echo \
-      "${_msg[*]}"
-    curl \
-      "${_curl_opts[@]}" \
+    _gl_dl_upload \
+      "$(pwd)/${_file}" \
       "${_url}"
     _assets_links+=(
       --asset-link
