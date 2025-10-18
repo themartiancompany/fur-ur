@@ -98,13 +98,15 @@ _upload() {
       "$(pwd)/${_file}" \
       "${_url}"
     _assets_links_json+=(
-      '{'$(printf \
-        '"name": "%s", "url":"%s"' \
-        "$(pwd)/${_file}" \
-        "${_url}")'}'
+      '{'$(IFS=" " \
+           printf \
+             '"name": "%s", "url":"%s"' \
+             "$(pwd)/${_file}" \
+             "${_url}")'}'
     )
   done
   _assets_link='['$( \
+    IFS=" " \
     printf \
       '%s,' \
       "${_assets_links_json[@]}")']'
