@@ -45,6 +45,7 @@ _upload() {
   for _file \
     in "dogeos-"*".pkg.tar."*; do
     _curl_opts=(
+      # --silent
       --header
         "JOB-TOKEN: ${ci_job_token}"
       --upload-file
