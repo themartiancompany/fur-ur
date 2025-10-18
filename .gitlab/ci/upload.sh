@@ -113,19 +113,26 @@ _upload() {
       "Release: ${tag}"
     --tag-name
       "${tag}"
-    --assets-link="'${_assets_link}'"
   )
   _msg=(
     "Running 'release-cli'"
     "with options"
-    "create '${_release_cli_create_opts[*]}'."
+    "create"
+    "'${_release_cli_create_opts[*]} --assets-link=[$( \
+    printf \
+      '%s,' \
+      "${_assets_links_json[@]}")]'."
   )
   echo \
     "${_msg[*]}"
   release-cli \
     --debug \
     create \
-    "${_release_cli_create_opts[@]}"
+    "${_release_cli_create_opts[@]}" \
+    --assets-link='['$( \
+    printf \
+      '%s,' \
+      "${_assets_links_json[@]}")']'
 }
 
 readonly \
