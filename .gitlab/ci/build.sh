@@ -53,7 +53,6 @@ _gur_mini() {
     "${_msg[*]}"
   _gl_dl_retrieve \
     "https://gitlab.com/api/v4/projects/${_ns}%2F${_pkg}-ur"
-  ls
   _project_id="$( \
     cat \
       "${HOME}/${_ns}%2F${_pkg}-ur" | \
@@ -156,22 +155,26 @@ _requirements() {
     -p
       "pacman"
   )
-  pacman \
-    -S \
-    --noconfirm \
-    "sudo"
+  # pacman \
+  #   -S \
+  #   --noconfirm \
+  #   "sudo"
   fur \
     "${_fur_opts[@]}" \
     "reallymakepkg"
-  _commit="$( \
-    recipe-get \
-      "/home/user/${_pkgname}/PKGBUILD" \
-      "_commit")"
   _gur_mini \
     "${ns}" \
     "fur" \
     "1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1-2"
   # ohoh
+  recipe-get \
+    -v \
+    "/home/user/${_pkgname}/PKGBUILD" \
+    "_commit"
+  _commit="$( \
+    recipe-get \
+      "/home/user/${_pkgname}/PKGBUILD" \
+      "_commit")"
   _gl_dl_mini \
     "${ns}" \
     "${_pkgname}" \
@@ -269,12 +272,21 @@ _gl_dl_retrieve() {
     _token \
     _curl_opts=() \
     _output_file \
-    _msg=()
+    _msg=() \
+    _token_missing
   _output_file="${HOME}/$( \
     basename \
       "${_url#https://}")"
   _token_private="${HOME}/.config/gitlab.com/default.txt"
+  _token_missing="false"
   if [[ ! -e "${_token_private}" ]]; then
+    _token_missing="true"
+  elif [[ -e "${_token_private}" ]]; then
+    if [[ "$(cat "${_token_private}")" == ""  ]]; then
+      _token_missing="true"
+    fi
+  fi
+  if [[ "${_token_missing}" == "true" ]]; then
     _msg=(
       "Missing private token at"
       "'${_token_private}'."
@@ -284,10 +296,12 @@ _gl_dl_retrieve() {
     _msg=(
       "Set the 'GL_DL_PRIVATE_TOKEN'"
       "variable in your Gitlab.com" \
-      "CI namespace configuration."
+      "CI namespace or repository configuration."
     )
     echo \
       "${_msg[*]}"
+    exit \
+      1
   fi
   _token="PRIVATE-TOKEN: $( \
     cat \
