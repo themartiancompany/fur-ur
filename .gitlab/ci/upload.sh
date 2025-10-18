@@ -114,7 +114,7 @@ _upload() {
   _msg=(
     "Running 'release-cli'"
     "with options"
-    "create '${_release_cli_create_opts[@]}'."
+    "create '${_release_cli_create_opts[*]}'."
   )
   echo \
     "${_msg[*]}"
