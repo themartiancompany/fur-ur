@@ -109,7 +109,7 @@ _upload() {
       "Release: ${tag}"
     --tag-name
       "${tag}"
-    "${_assets_link}"
+    ${_assets_link}
   )
   _msg=(
     "Running 'release-cli'"
