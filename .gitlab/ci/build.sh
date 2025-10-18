@@ -55,7 +55,7 @@ _gur_mini() {
   ls
   _project_id="$( \
     cat \
-      "${_ns}%2F${_pkg}-ur" | \
+      "${HOME}/${_ns}%2F${_pkg}-ur" | \
       jq \
         '.id')"
   _api="https://gitlab.com/api/v4"
@@ -64,7 +64,7 @@ _gur_mini() {
     "${_url}"
   _urls=( $( \
     cat \
-      "releases" | \
+      "${HOME}/releases" | \
       jq \
         '.[0].assets.links.[]' | \
         jq \
@@ -82,7 +82,7 @@ _gur_mini() {
   pacman \
     -Udd \
     --noconfirm \
-    *".pkg.tar."*
+    "${HOME}/${_pkgname}/"*".pkg.tar."*
 }
 
 _fur_mini() {
