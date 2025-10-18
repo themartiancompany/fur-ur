@@ -97,24 +97,24 @@ _upload() {
       "$(pwd)/${_file}" \
       "${_url}"
     _assets_links+=(
-      '{ "name": "'$(pwd)/${_file}'", "url": "'${_url}'" }'
+      '{"name": "'$(pwd)/${_file}'", "url": "'${_url}'"}'
     )
   done
-  _assets_link="--assets-link='[ $( \
+  _assets_link="--assets-link='[$( \
     printf \
-      '%s, ' \
-      "${_assets_links[@]}") ]'"
+      '%s,' \
+      "${_assets_links[@]}")]'"
   _release_cli_create_opts+=(
     --name
       "Release: ${tag}"
     --tag-name
       "${tag}"
-    ${_assets_link}
+    "${_assets_link}"
   )
   _msg=(
     "Running 'release-cli'"
     "with options"
-    "create ${_release_cli_create_opts[@]}'."
+    "create '${_release_cli_create_opts[@]}'."
   )
   echo \
     "${_msg[*]}"
