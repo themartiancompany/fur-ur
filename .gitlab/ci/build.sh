@@ -86,7 +86,7 @@ _fur_mini() {
   git \
     clone \
       "${_clone_opts[@]}" \
-      "https://github.com/${ns}/fur" \
+      "https://github.com/themartiancompany/fur" \
       "${_tmp_dir}/fur"
   rm \
     -rf \
