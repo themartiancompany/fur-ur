@@ -112,7 +112,7 @@ variables:
         "/home/user"
       cp \
         -r \
-        "/builds/themartiancompany/${CI_PROJECT_NAME}" \
+        "/builds/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}" \
         "/home/user/${CI_PROJECT_NAME%-ur}"
       chown \
         -R \
