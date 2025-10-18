@@ -183,6 +183,12 @@ _build() {
     -df
     --nocheck
   )
+  pacman \
+    -S \
+    --noconfirm \
+    $(recipe-get \
+        "/home/user/${_pkgname}/PKGBUILD" \
+        "makedepends")
   _cmd+=(
     "cd"
       "/home/user/${_pkgname}" "&&"
