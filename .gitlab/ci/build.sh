@@ -52,6 +52,7 @@ _gur_mini() {
     "${_msg[*]}"
   _gl_dl_retrieve \
     "https://gitlab.com/api/v4/projects/${_ns}%2F${_pkg}-ur"
+  ls
   _project_id="$( \
     cat \
       "${_ns}%2F${_pkg}-ur" | \
