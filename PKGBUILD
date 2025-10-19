@@ -67,8 +67,8 @@ if [[ "${_docs}" == "true" ]]; then
 fi
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1"
 _reallymakepkg_pkgver="1.2.4"
-_commit="a8fb8e5d58f221fc6607edd21b0077fe0a510ed1"
-pkgrel=1
+_commit="2bc1a5256862ab86177daef733aabe30594cf1d9"
+pkgrel=2
 _pkgdesc=(
   "Fallback Ur."
 )
@@ -132,8 +132,8 @@ _tarname="${_pkg}-${_tag}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${_pkg}"
 fi
-_sum="b2b6ab21ed24727ec69e0db6cd3d6099fbd89495ce82751c9823bf599a46d0c2"
-_sig_sum="02ffd519d81a62587ef5149b846571ccb5f3b0ddc8a7f780bb5ae9a3e2b4d225  fur-a8fb8e5d58f221fc6607edd21b0077fe0a510ed1"
+_sum="6b70dd2f6c347d448c2d6140fdb70429d17135e6713ea6c095df1b34e4010e6a"
+_sig_sum="db7eaec54f6ea278c0a9d3e48f6b845d9cbbcba8de38d7e64d9b12c58aa489ad"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
