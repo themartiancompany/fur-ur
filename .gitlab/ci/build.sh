@@ -58,7 +58,7 @@ _gur_mini() {
       "${HOME}/${_ns}%2F${_pkg}-ur" | \
       jq \
         '.id')"
-  if [[ "${_project}" == "null" ]]; then
+  if [[ "${_project_id}" == "null" ]]; then
     _msg=(
       "The project '${_pkg}-ur' does not exist"
       "in namespace '${_ns}'."
