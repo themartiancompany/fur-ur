@@ -68,7 +68,7 @@ fi
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1"
 _reallymakepkg_pkgver="1.2.4"
 _commit="2bc1a5256862ab86177daef733aabe30594cf1d9"
-pkgrel=2
+pkgrel=3
 _pkgdesc=(
   "Fallback Ur."
 )
