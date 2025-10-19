@@ -87,6 +87,7 @@ depends=(
   "libcrash-bash"
   "pacman"
   "reallymakepkg>=${_reallymakepkg_pkgver}"
+  "tree"
 )
 _gh_dl_optdepends=(
   "gh-dl:"
