@@ -132,8 +132,8 @@ _tarname="${_pkg}-${_tag}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${_pkg}"
 fi
-_sum="6b70dd2f6c347d448c2d6140fdb70429d17135e6713ea6c095df1b34e4010e6a"
-_sig_sum="db7eaec54f6ea278c0a9d3e48f6b845d9cbbcba8de38d7e64d9b12c58aa489ad"
+_sum="2215648c0b92589f586149d95716d9d9534f3456e1edea15f453f5ae1ea56ec8"
+_sig_sum="96b70908fb2e743f37431432e6b8f1c0d697d197359cda519e40735e4eeab801"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
