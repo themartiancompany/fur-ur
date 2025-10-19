@@ -150,7 +150,6 @@ if [[ "${_evmfs}" == "true" ]]; then
   )
   if [[ "${_git}" == "false" ]]; then
     _src="${_evmfs_src}"
-    _sum="${_sum}"
     source+=(
       "${_sig_src}"
     )

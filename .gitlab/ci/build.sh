@@ -219,6 +219,7 @@ _build() {
   _makepkg_opts+=(
     -df
     --nocheck
+    --skipinteg
   )
   pacman \
     -S \
