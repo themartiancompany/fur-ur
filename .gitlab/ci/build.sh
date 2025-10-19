@@ -58,6 +58,16 @@ _gur_mini() {
       "${HOME}/${_ns}%2F${_pkg}-ur" | \
       jq \
         '.id')"
+  if [[ "${_project}" == "null" ]]; then
+    _msg=(
+      "The project '${_pkg}-ur' does not exist"
+      "in namespace '${_ns}'."
+    )
+    echo \
+      "${_msg[*]}"
+    return \
+      1
+  fi
   _api="https://gitlab.com/api/v4"
   _url="${_api}/projects/${_project_id}/releases"
   _gl_dl_retrieve \
@@ -159,6 +169,13 @@ _requirements() {
   #   -S \
   #   --noconfirm \
   #   "sudo"
+  fur \
+    "${_fur_opts[@]}" \
+    "reallymakepkg"
+  _gur_mini \
+    "${ns}" \
+    "reallymakepkg" \
+    "1.2.4-1" || \
   fur \
     "${_fur_opts[@]}" \
     "reallymakepkg"
