@@ -212,7 +212,7 @@ _build() {
   _reallymakepkg_opts+=(
     -v
     -w
-      "'${HOME}/${_pkgname}-build'"
+      "'/home/user/${_pkgname}-build'"
   )
   _makepkg_opts+=(
     -df
