@@ -207,7 +207,9 @@ _build() {
     _reallymakepkg_opts=() \
     _makepkg_opts=() \
     _cmd=() \
-    _pkgname
+    _pkgname \
+    _home
+  _home="/home/user"
   _pkgname="${pkg%-ur}"
   _reallymakepkg_opts+=(
     -v
@@ -222,11 +224,11 @@ _build() {
     -S \
     --noconfirm \
     $(recipe-get \
-        "/home/user/${_pkgname}/PKGBUILD" \
+        "${_home}/${_pkgname}/PKGBUILD" \
         "makedepends")
   _cmd+=(
     "cd"
-      "/home/user/${_pkgname}" "&&"
+      "${_home}/${_pkgname}" "&&"
     "reallymakepkg"
       "${_reallymakepkg_opts[@]}"
       "--"
@@ -239,9 +241,9 @@ _build() {
   pacman \
     -Udd \
     --noconfirm \
-    "/home/user/${_pkgname}/"*".pkg.tar."*
+    "${_home}/${_pkgname}/"*".pkg.tar."*
   for _file \
-    in "/home/user/${_pkgname}/"*".pkg.tar."*; do
+    in "${_home}/${_pkgname}/"*".pkg.tar."*; do
     mv \
       "${_file}" \
       "dogeos-gnu-$( \
