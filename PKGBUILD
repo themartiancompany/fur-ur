@@ -42,6 +42,9 @@ if [[ ! -v "_evmfs" ]]; then
     _evmfs="false"
   fi
 fi
+if [[ ! -v "_docs" ]]; then
+  _docs="true"
+fi
 _offline="false"
 _git="false"
 _git_http_host="gitlab"
@@ -53,10 +56,18 @@ elif [[ "${_git_http_host}" == "github" ]]; then
 fi
 _py="python"
 _pkg=fur
-pkgname="${_pkg}"
-pkgver="1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
-_commit="7abf8e2cd7c5a447c8bfdfd7e61e6537a56b2480"
-pkgrel=3
+pkgbase="${_pkg}"
+pkgname=(
+  "${_pkg}"
+)
+if [[ "${_docs}" == "true" ]]; then
+  pkgname+=(
+    "${_pkg}-docs"
+  )
+fi
+pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1"
+_commit="a8fb8e5d58f221fc6607edd21b0077fe0a510ed1"
+pkgrel=1
 _pkgdesc=(
   "Fallback Ur."
 )
@@ -77,7 +88,12 @@ depends=(
 )
 _gh_dl_optdepends=(
   "gh-dl:"
-    "to retrieve Gur continuous"
+    "to retrieve Github continuous"
+    "integration built binary packages."
+)
+_gur_optdepends=(
+  "gur:"
+    "to retrieve Gitlab continuous"
     "integration built binary packages."
 )
 _inteppacman_optdepends=(
@@ -87,6 +103,7 @@ _inteppacman_optdepends=(
 )
 optdepends=(
   "${_gh_dl_optdepends[*]}"
+  "${_gur_optdepends[*]}"
 )
 if [[ "${_os}" != "GNU/Linux" ]] && \
    [[ "${_os}" == "Android" ]]; then
@@ -96,8 +113,12 @@ if [[ "${_os}" != "GNU/Linux" ]] && \
 fi
 makedepends=(
   "make"
-  "${_py}-docutils"
 )
+if [[ "${_docs}" == "true" ]]; then
+  makedepends+=(
+    "${_py}-docutils"
+  )
+fi
 checkdepends=(
   "shellcheck"
 )
@@ -108,16 +129,16 @@ _tarname="${_pkg}-${_tag}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${_pkg}"
 fi
-_archive_sum="5319da4e100430551104825f06f8de58136f744b9dd90df99d60ea1bc178b03c"
-_archive_sig_sum="ec5f7364a8c51c1d8f53c85f90aa791e7e7c98997a76e6852e19a4142e8fd200"
+_sum="b2b6ab21ed24727ec69e0db6cd3d6099fbd89495ce82751c9823bf599a46d0c2"
+_sig_sum="02ffd519d81a62587ef5149b846571ccb5f3b0ddc8a7f780bb5ae9a3e2b4d225  fur-a8fb8e5d58f221fc6607edd21b0077fe0a510ed1"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_dir="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}"
-_evmfs_archive_uri="${_evmfs_dir}/${_archive_sum}"
-_evmfs_archive_src="${_tarname}.${_archive_format}::${_evmfs_archive_uri}"
-_archive_sig_uri="${_evmfs_dir}/${_archive_sig_sum}"
-_archive_sig_src="${_tarname}.${_archive_format}.sig::${_archive_sig_uri}"
+_evmfs_uri="${_evmfs_dir}/${_sum}"
+_evmfs_src="${_tarname}.${_archive_format}::${_evmfs_uri}"
+_sig_uri="${_evmfs_dir}/${_sig_sum}"
+_sig_src="${_tarname}.${_archive_format}.sig::${_sig_uri}"
 source=()
 sha256sums=()
 if [[ "${_evmfs}" == "true" ]]; then
@@ -125,13 +146,13 @@ if [[ "${_evmfs}" == "true" ]]; then
     "evmfs"
   )
   if [[ "${_git}" == "false" ]]; then
-    _src="${_evmfs_archive_src}"
-    _sum="${_archive_sum}"
+    _src="${_evmfs_src}"
+    _sum="${_sum}"
     source+=(
-      "${_archive_sig_src}"
+      "${_sig_src}"
     )
     sha256sums+=(
-      "${_archive_sig_sum}"
+      "${_sig_sum}"
     )
   fi
 elif [[ "${_evmfs}" == "false" ]]; then
@@ -144,10 +165,8 @@ elif [[ "${_evmfs}" == "false" ]]; then
   elif [[ "${_git}" == false ]]; then
     if [[ "${_tag_name}" == 'pkgver' ]]; then
       _src="${_tarname}.tar.gz::${_url}/archive/refs/tags/${_tag}.tar.gz"
-      _sum="${_archive_sum}"
     elif [[ "${_tag_name}" == "commit" ]]; then
       _src="${_tarname}.${_archive_format}::${_url}/archive/${_tag}.${_archive_format}"
-      _sum="${_archive_sum}"
     fi
   fi
 fi
@@ -177,13 +196,39 @@ check() {
     check
 }
 
-package() {
+package_fur() {
+  local \
+    _make_opts=()
+  _make_opts+=(
+    PREFIX="/usr"
+    DESTDIR="${pkgdir}"
+  )
   cd \
     "${_tarname}"
   make \
-    PREFIX="/usr" \
-    DESTDIR="${pkgdir}" \
-    install
+    "${_make_opts[@]}" \
+    install-fur
+}
+
+package_fur-docs() {
+  local \
+    _make_opts=()
+  _make_opts+=(
+    PREFIX="/usr"
+    DESTDIR="${pkgdir}"
+  )
+  pkgdesc+=" (documentation)"
+  depends=(
+    "${_pkg}"
+  )
+  cd \
+    "${_tarname}"
+  make \
+    "${_make_opts[@]}" \
+    install-doc
+  make \
+    "${_make_opts[@]}" \
+    install-man
 }
 
 # vim: ft=sh syn=sh et
