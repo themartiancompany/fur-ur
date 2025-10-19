@@ -66,6 +66,7 @@ if [[ "${_docs}" == "true" ]]; then
   )
 fi
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1"
+_reallymakepkg_pkgver="1.2.4"
 _commit="a8fb8e5d58f221fc6607edd21b0077fe0a510ed1"
 pkgrel=1
 _pkgdesc=(
@@ -85,6 +86,7 @@ depends=(
   "git"
   "libcrash-bash"
   "pacman"
+  "reallymakepkg>=${_reallymakepkg_pkgver}"
 )
 _gh_dl_optdepends=(
   "gh-dl:"
