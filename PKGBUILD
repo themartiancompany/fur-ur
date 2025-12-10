@@ -45,8 +45,10 @@ fi
 if [[ ! -v "_docs" ]]; then
   _docs="true"
 fi
+if [[ ! -v "_git" ]]; then
+  _git="false"
+fi
 _offline="false"
-_git="false"
 _git_http_host="gitlab"
 _archive_format="tar.gz"
 if [[ "${_git_http_host}" == "gitlab" ]]; then
@@ -68,7 +70,7 @@ fi
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1"
 _reallymakepkg_pkgver="1.2.4"
 _commit="2bc1a5256862ab86177daef733aabe30594cf1d9"
-pkgrel=7
+pkgrel=9
 _pkgdesc=(
   "Fallback Ur."
 )
