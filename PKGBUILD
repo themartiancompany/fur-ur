@@ -205,6 +205,7 @@ package_fur() {
     PREFIX="/usr"
     DESTDIR="${pkgdir}"
   )
+  ls
   cd \
     "${_tarname}"
   make \
