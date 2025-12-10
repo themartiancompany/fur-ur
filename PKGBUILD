@@ -70,7 +70,7 @@ fi
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1"
 _reallymakepkg_pkgver="1.2.4"
 _commit="2bc1a5256862ab86177daef733aabe30594cf1d9"
-pkgrel=9
+pkgrel=11
 _pkgdesc=(
   "Fallback Ur."
 )
@@ -208,6 +208,9 @@ package_fur() {
     DESTDIR="${pkgdir}"
   )
   ls
+  tar \
+    xf \
+    "${_tarname}.tar.gz"
   cd \
     "${_tarname}"
   make \
