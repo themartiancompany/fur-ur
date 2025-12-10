@@ -223,7 +223,7 @@ package_fur-docs() {
   depends=(
     "${_pkg}"
   )
-  ls
+  ls "${srcdir}" 1&>2 || true
   cd \
     "${_tarname}"
   make \
