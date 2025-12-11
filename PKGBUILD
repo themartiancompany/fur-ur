@@ -48,8 +48,12 @@ fi
 if [[ ! -v "_git" ]]; then
   _git="false"
 fi
-_offline="false"
-_git_http_host="gitlab"
+if [[ ! -v "_git_http_host" ]]; then
+  _git_http_host="gitlab"
+fi
+if [[ ! -v "_offline" ]]; then
+  _offline="false"
+fi
 _archive_format="tar.gz"
 if [[ "${_git_http_host}" == "gitlab" ]]; then
   _archive_format="tar.gz"
