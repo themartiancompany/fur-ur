@@ -78,7 +78,7 @@ pkgdesc="${_pkgdesc[*]}"
 arch=(
   'any'
 )
-_http="https://github.com"
+_http="https://${_git_http_host}.com"
 _ns="themartiancompany"
 url="${_http}/${_ns}/${_pkg}"
 license=(
