@@ -71,10 +71,10 @@ if [[ "${_docs}" == "true" ]]; then
     "${_pkg}-docs"
   )
 fi
-pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1"
+pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1.1"
 _reallymakepkg_pkgver="1.2.4"
-_commit="2bc1a5256862ab86177daef733aabe30594cf1d9"
-pkgrel=13
+_commit="bd3812b1a5a232c4481756a68b2ef70fe04033b3"
+pkgrel=1
 _pkgdesc=(
   "Fallback Ur."
 )
@@ -135,19 +135,23 @@ _url="${url}"
 _tag="${_commit}"
 _tag_name="commit"
 _tarname="${_pkg}-${_tag}"
+_tarfile="${_tarname}.${_archive_format}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${_pkg}"
 fi
-_sum="6b70dd2f6c347d448c2d6140fdb70429d17135e6713ea6c095df1b34e4010e6a"
-_sig_sum="e838465042aed60b1d466d9aa878d422138b3e991dab82ceb1018d29921a79a1"
+_sum="838840d57a393d24dc37f79d177d02e913f5675828bb00f45a507247be69e68e"
+_sig_sum="66959489918a6456644ef8635dfabd678b466253e2d8fd895360b40219aa7a86"
+# Dvorak
+_evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
+# Truocolo
+_evmfs_ns="0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
-_evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_dir="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}"
 _evmfs_uri="${_evmfs_dir}/${_sum}"
-_evmfs_src="${_tarname}.${_archive_format}::${_evmfs_uri}"
+_evmfs_src="${_tarfile}::${_evmfs_uri}"
 _sig_uri="${_evmfs_dir}/${_sig_sum}"
-_sig_src="${_tarname}.${_archive_format}.sig::${_sig_uri}"
+_sig_src="${_tarfile}.sig::${_sig_uri}"
 source=()
 sha256sums=()
 if [[ "${_evmfs}" == "true" ]]; then
