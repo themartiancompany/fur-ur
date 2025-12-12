@@ -40,7 +40,7 @@ _gur_mini() {
     _pkg="${2}" \
     _release="${3}" \
     _depends_skip \
-    _pacman_opts=()
+    _pacman_opts=() \
     _api \
     _url \
     _msg=() \
