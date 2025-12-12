@@ -39,10 +39,16 @@ _gur_mini() {
     _ns="${1}" \
     _pkg="${2}" \
     _release="${3}" \
+    _depends_skip \
+    _pacman_opts=()
     _api \
     _url \
     _msg=() \
     _sig
+  _depends_skip="y"
+  if (( 3 < "${#}" )); then
+    _depends_skip="${4}"
+  fi
   _msg=(
     "Downloading '${_pkg}'"
     "binary CI release"
@@ -97,9 +103,17 @@ _gur_mini() {
   rm \
     -rf \
     "${HOME}/"*".pkg.tar.xz.sig"
+  pacman_opts+=(
+    -U
+    --noconfirm
+  )
+  if [[ "${_depends_skip}" == "y" ]]; then
+    pacman_opts+=(
+      -dd
+    )
+  fi
   pacman \
-    -Udd \
-    --noconfirm \
+    "${_pacman_opts[@]}" \
     "${HOME}/"*".pkg.tar.xz"
 }
 
@@ -182,7 +196,8 @@ _requirements() {
   _gur_mini \
     "${ns}" \
     "fur" \
-    "1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1-3" || \
+    "1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1-3" \
+    "n" || \
   true
   # ohoh
   recipe-get \
