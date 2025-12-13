@@ -74,7 +74,7 @@ fi
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1.1"
 _libcrash_bash_pkgver="0.0.0.0.0.1.1.1.1.1"
 _reallymakepkg_pkgver="1.2.4"
-_commit="d16c8527001334a1e195df6a5803be8069ae262a"
+_commit="0381853b3e9fb723f4ffe4144d2aee9a7e9aa9eb"
 pkgrel=1
 _pkgdesc=(
   "Fallback Ur."
@@ -140,8 +140,8 @@ _tarfile="${_tarname}.${_archive_format}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${_pkg}"
 fi
-_sum="a4bf3bdd6e5097fce1acb252eb0715e84d1e9ff05e981c1657e1e9db5f3ca5e0"
-_sig_sum="74df466b23f6a2df8f54aeb937f047915ba9c35050d13360c4b02397b9821100"
+_sum="423647a52eb9ce00713641ad11d09c3fa8d19c90cfa5333833333f02638f7649"
+_sig_sum="fe5133d57247e263ecd6844bd965d647225ebe5b5f19f98ebecca5045bd39120"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 # Truocolo
