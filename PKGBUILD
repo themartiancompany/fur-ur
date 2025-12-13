@@ -72,6 +72,7 @@ if [[ "${_docs}" == "true" ]]; then
   )
 fi
 pkgver="1.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1.1"
+_libcrash_bash_pkgver="0.0.0.0.0.1.1.1.1.1"
 _reallymakepkg_pkgver="1.2.4"
 _commit="d16c8527001334a1e195df6a5803be8069ae262a"
 pkgrel=1
@@ -90,7 +91,7 @@ license=(
 )
 depends=(
   "git"
-  "libcrash-bash"
+  "libcrash-bash>=${_libcrash_bash_pkgver}"
   "pacman"
   "reallymakepkg>=${_reallymakepkg_pkgver}"
   "tree"
