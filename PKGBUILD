@@ -75,7 +75,7 @@ pkgver="1.0.0.0.0.0.0.0.0.0.0.1"
 _libcrash_bash_pkgver="0.0.0.0.0.1.1.1.1.1"
 _reallymakepkg_pkgver="1.2.4"
 _commit="7e27c37cd3344510f0185f9c6fd4387023f2fd01"
-pkgrel=2
+pkgrel=1
 _pkgdesc=(
   "Fallback Ur."
 )
