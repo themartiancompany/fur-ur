@@ -71,7 +71,7 @@ if [[ "${_docs}" == "true" ]]; then
     "${_pkg}-docs"
   )
 fi
-pkgver="1.0.0.0.0.0.0.0.0.0.0.1.1"
+pkgver="1.0.0.0.0.0.0.0.0.0.0.1.1.1"
 _libcrash_bash_pkgver="0.0.0.0.0.1.1.1.1.1"
 _reallymakepkg_pkgver="1.2.4"
 _commit="c3d29542e0944b04d5bee0f3c42367581316f319"
