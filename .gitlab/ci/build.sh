@@ -189,14 +189,14 @@ _requirements() {
   _gur_mini \
     "${ns}" \
     "reallymakepkg" \
-    "1.2.5-1" || \
+    "1.2.5-7" || \
   fur \
     "${_fur_opts[@]}" \
     "reallymakepkg"
   _gur_mini \
     "${ns}" \
     "fur" \
-    "1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.1.1-3" \
+    "1.0.0.0.0.0.0.0.0.0.0.0.1-11" \
     "n" || \
   true
   # ohoh
